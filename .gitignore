@@ -1,0 +1,25 @@
+# 开发环境相关
+__pycache__/
+_pycache_*.pyc
+*.pyc
+*.class
+.vscode/
+
+# 数据文件
+datasets/*
+experiments/*
+logs/*
+
+notebooks/*
+scripts/*
+smae/*
+
+*.pth
+*.pt
+
+# 输出和临时文件
+*_logs
+*.log
+
+tmp/
+tmp*
