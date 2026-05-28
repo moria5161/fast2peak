@@ -2,7 +2,7 @@
 '''
 @File        :main.py
 @Description :
-@InitTime    :2025/12/13 19:00:00
+@InitTime    :2026/05/01 19:00:00
 @Author      :Moria
 @EMail       :zhangnannan@stu.xmu.edu.cn
 
@@ -46,6 +46,7 @@ def parse_args():
     group_alg = parser.add_argument_group('Algorithm')
     group_alg.add_argument('--mask_ratio', default=0.25, type=float)
     group_alg.add_argument('--gamma', default=11, type=int)
+    group_alg.add_argument('--block_size', default=8, type=int)
     
     group_alg.add_argument('--smae_mask_ratio', default=0.50, type=float)
 

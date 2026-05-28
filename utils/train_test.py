@@ -68,8 +68,10 @@ def train(model, args, device, local_rank, world_size, log_dir, checkpoint_dir):
             optimizer.zero_grad()
             with autocast(device_type="cuda", enabled=torch.cuda.is_available()):
                 
-                if args.model_name == 'SMAE':
-                    loss, _, _ = model(input_spec, mask_ratio=args.smae_mask_ratio)
+                if args.model_name in ['SMAE', 'RamanMAE', '2DSMAE']:
+                    # Mask ratio handling
+                    mask_r = args.smae_mask_ratio if args.model_name in ['SMAE', '2DSMAE'] else args.mask_ratio
+                    loss, _, _ = model(input_spec, mask_ratio=mask_r)
                 else:
                     output = model(input_spec)
                     loss = loss_function(output * (1 - mask), label * (1 - mask))
@@ -97,8 +99,9 @@ def train(model, args, device, local_rank, world_size, log_dir, checkpoint_dir):
             with autocast(device_type="cuda", enabled=torch.cuda.is_available()):
                 for data in loader_val:
                     label, input_spec, mask = data['label'].to(device), data['input'].to(device), data['mask'].to(device)
-                    if args.model_name == 'SMAE':
-                        loss, _, _ = model(input_spec, mask_ratio=args.smae_mask_ratio)
+                    if args.model_name in ['SMAE', 'RamanMAE', '2DSMAE']:
+                        mask_r = args.smae_mask_ratio if args.model_name in ['SMAE', '2DSMAE'] else args.mask_ratio
+                        loss, _, _ = model(input_spec, mask_ratio=mask_r)
                     else:
                         output = model(input_spec)
                         loss = loss_function(output * (1 - mask), label * (1 - mask))
@@ -158,35 +161,35 @@ def train(model, args, device, local_rank, world_size, log_dir, checkpoint_dir):
         print(f"Total training time: {(time.time() - start_time) / 60:.2f} minutes")
 
 
-def test(model, args, device, output_dir):
-    test_datapath_lower = args.test_datapath.lower()
+def test_single_file(model, args, device, output_dir, file_path):
+    test_datapath_lower = file_path.lower()
 
     if test_datapath_lower.endswith('.txt'):
-        data_noisy = np.loadtxt(args.test_datapath)
+        data_noisy = np.loadtxt(file_path)
         if data_noisy.ndim == 1:
             data_noisy = np.expand_dims(data_noisy, axis=0)
         spectra_noisy, wavenumbers = np.expand_dims(data_noisy[:, 1], axis=0), data_noisy[:, 0]
         
-        input_filename = os.path.splitext(os.path.basename(args.test_datapath))[0]
+        input_filename = os.path.splitext(os.path.basename(file_path))[0]
         output_filename = os.path.join(output_dir, f'{input_filename}_{args.model_name}.txt')
     
     elif test_datapath_lower.endswith('.mat'):
-        data_input = sio.loadmat(args.test_datapath)
+        data_input = sio.loadmat(file_path)
         spectra_noisy = data_input['Noisy']
-        output_filename = args.test_datapath
+        output_filename = file_path
     
     elif test_datapath_lower.endswith('.h5'):
-        with h5py.File(args.test_datapath, 'r') as f:
+        with h5py.File(file_path, 'r') as f:
             spectra_noisy = f['noisy'][:].astype(np.float32)
             gt = f['gt'][:].astype(np.float32) if 'gt' in f else None
-        file_name = os.path.basename(args.test_datapath)
+        file_name = os.path.basename(file_path)
         output_filename = os.path.join(output_dir, file_name)
     
     else:
-        print("Unsupported test file type. Please provide .txt, .mat or .h5 file")
+        print(f"Unsupported test file type. Please provide .txt, .mat or .h5 file for {file_path}")
         return
 
-    print(f"Loading test data: {args.test_datapath}, shape: {spectra_noisy.shape}")
+    print(f"Loading test data: {file_path}, shape: {spectra_noisy.shape}")
 
     spectra_noisy_orig = spectra_noisy.copy().astype(np.float32)
     original_length = spectra_noisy_orig.shape[1]
@@ -222,10 +225,14 @@ def test(model, args, device, output_dir):
         for i in range(0, spectra_norm.shape[0], args.test_batch_size):
             batch = spectra_norm[i:i + args.test_batch_size]
             batch_tensor = torch.from_numpy(batch).unsqueeze(1).to(device, dtype=torch.float32)
-            if args.model_name == 'SMAE':
+            if args.model_name in ['SMAE', '2DSMAE']:
                 _, output, _ = model(batch_tensor, mask_ratio=args.smae_mask_ratio)
                 output = model.unpatchify(output)
                 output = output.cpu().numpy()
+            elif args.model_name == 'RamanMAE':
+                # Test logic: Predict the entire image with mask_ratio=0.0
+                _, output, _ = model(batch_tensor, mask_ratio=0.0)
+                output = output.view(batch_tensor.shape).cpu().numpy()
             else:    
                 output = model(batch_tensor).cpu().numpy()
             denoised_list.append(output)
@@ -293,3 +300,12 @@ def test(model, args, device, output_dir):
             print("Ground truth not found. Skipping evaluation.")
                 
     print(f'Result saved to: {output_filename}')
+
+
+def test(model, args, device, output_dir):
+    if os.path.isdir(args.test_datapath):
+        file_list = [os.path.join(args.test_datapath, f) for f in os.listdir(args.test_datapath) if os.path.isfile(os.path.join(args.test_datapath, f))]
+        for file_path in file_list:
+            test_single_file(model, args, device, output_dir, file_path)
+    else:
+        test_single_file(model, args, device, output_dir, args.test_datapath)

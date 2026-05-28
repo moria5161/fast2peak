@@ -323,7 +323,7 @@ if __name__ == "__main__":
     os.makedirs(args.data_savedir, exist_ok=True)
 
     if os.path.isdir(args.data_dir):
-        files_to_process = sorted([os.path.join(args.data_dir, f) for f in os.listdir(args.data_dir) if f.endswith('.h5')])
+        files_to_process = sorted([os.path.join(args.data_dir, f) for f in os.listdir(args.data_dir) if f.endswith('.h5') or f.endswith('.txt')])
     elif os.path.isfile(args.data_dir):
         files_to_process = [args.data_dir]
     else:
@@ -331,15 +331,35 @@ if __name__ == "__main__":
         exit(1)
 
     if not files_to_process:
-        print("No .h5 files found to process.")
+        print("No .h5 or .txt files found to process.")
         exit(0)
         
     for current_file in files_to_process:
         print(f"\n{'='*20} Processing: {os.path.basename(current_file)} | Method: {args.method} {'='*20}")
         
-        with h5py.File(current_file, 'r') as f:
-            spectra_noisy = f['noisy'][:].astype(np.float32)
-            gt = f['gt'][:].astype(np.float32) if 'gt' in f else None
+        wavenumbers = None
+        if current_file.endswith('.h5'):
+            with h5py.File(current_file, 'r') as f:
+                spectra_noisy = f['noisy'][:].astype(np.float32)
+                gt = f['gt'][:].astype(np.float32) if 'gt' in f else None
+        elif current_file.endswith('.txt'):
+            try:
+                data = np.loadtxt(current_file)
+                if data.ndim == 2:
+                    wavenumbers = data[:, 0]
+                    spectra_noisy = data[:, 1].astype(np.float32).reshape(1, -1)
+                elif data.ndim == 1:
+                    wavenumbers = np.arange(len(data))
+                    spectra_noisy = data.astype(np.float32).reshape(1, -1)
+                else:
+                    print(f"Skipping {current_file}: unsupported format.")
+                    continue
+                gt = None
+            except Exception as e:
+                print(f"Error loading {current_file}: {e}")
+                continue
+        else:
+            continue
 
         if isinstance(spectra_noisy, torch.Tensor):
             spectra_noisy = spectra_noisy.cpu().numpy()
@@ -353,11 +373,16 @@ if __name__ == "__main__":
         # ---------------------------------------------------
         
         file_name = os.path.basename(current_file)
-        output_path = os.path.join(args.data_savedir, f"{os.path.splitext(file_name)[0]}.h5")
-        
-        with h5py.File(output_path, 'w') as f:
-            f.create_dataset('denoised', data=denoised_spectra, compression="gzip", compression_opts=4, chunks=True)
-        print(f"Saved to {output_path}")
+        if current_file.endswith('.h5'):
+            output_path = os.path.join(args.data_savedir, f"{os.path.splitext(file_name)[0]}.h5")
+            with h5py.File(output_path, 'w') as f:
+                f.create_dataset('denoised', data=denoised_spectra, compression="gzip", compression_opts=4, chunks=True)
+            print(f"Saved to {output_path}")
+        elif current_file.endswith('.txt'):
+            output_path = os.path.join(args.data_savedir, file_name)
+            save_data = np.column_stack((wavenumbers, denoised_spectra[0]))
+            np.savetxt(output_path, save_data, fmt='%.6f', delimiter='\t')
+            print(f"Saved to {output_path}")
         
         inference_time = time.time() - start_time
         
@@ -389,3 +414,4 @@ if __name__ == "__main__":
             print(f"Final Results -> SNR: {avg_snr} | RMSE: {avg_rmse} | SSS: {avg_sss}")
         else:
             print("Ground truth not found. Skipping evaluation.")
+            continue

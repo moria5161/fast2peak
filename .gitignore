@@ -23,3 +23,6 @@ smae/*
 
 tmp/
 tmp*
+slurm_*
+
+push2hf.py

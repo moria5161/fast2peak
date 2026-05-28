@@ -342,11 +342,17 @@ def data_load_process(file_path: str, key: str, target_length: int) -> np.ndarra
 
 def data_loaders(args):
     data_dir = args.train_data_dir
-    train_path = os.path.join(data_dir, 'train.h5')
-    val_path = os.path.join(data_dir, 'val.h5')
+    
+    if os.path.isfile(data_dir):
+        train_path = data_dir
+        val_path = data_dir
+        print(f"[Training] Using single file as dataset: {train_path}")
+    else:
+        train_path = os.path.join(data_dir, 'train.h5')
+        val_path = os.path.join(data_dir, 'val.h5')
     
 
-    if args.model_name == 'SMAE':
+    if args.model_name in ['SMAE', 'RamanMAE', '2DSMAE']:
         if args.pretrained:
             train_path = args.fine_tune_data_path
             val_path = train_path
@@ -378,8 +384,10 @@ def data_loaders(args):
         train_data = data_load_process(train_path, 'noisy', args.spectrum_length)
         val_data = data_load_process(val_path, 'noisy', args.spectrum_length)
         
-        ds_train = MaskDataset(train_data, args.gamma, args.mask_ratio)
-        ds_val = MaskDataset(val_data, args.gamma, args.mask_ratio)
+        # ds_train = MaskDataset(train_data, args.gamma, args.mask_ratio)
+        # ds_val = MaskDataset(val_data, args.gamma, args.mask_ratio)
+        ds_train = BlockMaskDataset(train_data, args.gamma, args.mask_ratio, args.block_size)
+        ds_val = BlockMaskDataset(val_data, args.gamma, args.mask_ratio, args.block_size)
 
     if args.model_name == 'Fast2PeakOverlap':
         if args.pretrained:
@@ -388,9 +396,9 @@ def data_loaders(args):
             print(f"[Fine-tuning] f2p using data from: {train_path}")
         train_data = data_load_process(train_path, 'noisy', args.spectrum_length)
         val_data = data_load_process(val_path, 'noisy', args.spectrum_length)
-        
-        ds_train = BlockMaskDataset(train_data, args.gamma, args.mask_ratio)
-        ds_val = BlockMaskDataset(val_data, args.gamma, args.mask_ratio)
+
+        ds_train = BlockMaskDataset(train_data, args.gamma, args.mask_ratio, args.block_size)
+        ds_val = BlockMaskDataset(val_data, args.gamma, args.mask_ratio, args.block_size)
 
 
     elif args.model_name == 'ResUNet':
