@@ -1,0 +1,14 @@
+# Local data, job scripts and experiment artifacts.
+/datasets/
+/scripts/
+/outputs/
+
+# Runtime/editor artifacts.
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.idea/
+
+# Model weights must stay in the ignored output/data directories.
+*.pt
+*.pth

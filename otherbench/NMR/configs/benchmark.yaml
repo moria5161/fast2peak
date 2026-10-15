@@ -1,0 +1,97 @@
+# Relative paths resolve against otherbench/NMR.
+seed: 42
+spectrum_length: 6400
+paths:
+  raw_spectra: datasets/raw/MOESM2_ESM.txt
+  molecule_sdf: datasets/raw/molfile.sdf
+  source_data: datasets/source
+  splits: datasets/splits/splits.h5
+  validation_data: datasets/validation/benchmark.h5
+  benchmark_data: datasets/benchmark/benchmark.h5
+  evaluation_output: outputs/evaluation
+  public_docs: docs
+
+noise_conditions:
+  - {name: gaussian_sigma_0.010, kind: gaussian, sigma: 0.01}
+  - {name: gaussian_sigma_0.050, kind: gaussian, sigma: 0.05}
+  - {name: gaussian_sigma_0.100, kind: gaussian, sigma: 0.10}
+
+baselines:
+  wavelet: {family: sym8, level: 4, threshold_mode: soft}
+  cadzow: {hankel_width: 128, max_rank: 64, iterations: 2}
+peak_metrics:
+  min_prominence: 0.03
+  min_distance_points: 8
+  matching_tolerance_ppm: 0.03
+
+f2p:
+  checkpoint: outputs/training/f2p/checkpoints/best_test_noisy_masked_mse_checkpoint.pth
+  native_length: 6400
+  stride: 6400
+  batch_size: 16
+  asinh: false
+dn_unet:
+  converted_checkpoint: outputs/pretrained/dn_unet.pth
+  trained_checkpoint: outputs/training/dn_unet/final_train_plus_val_checkpoint.pth
+  native_length: 8192
+  batch_size: 4
+  normalization: positive_max
+ld_net:
+  checkpoint: outputs/pretrained/ld_net.pth
+  trained_checkpoint: outputs/training/ld_net/final_train_plus_val_checkpoint.pth
+  native_length: 8192
+  batch_size: 32
+  normalization: positive_max
+
+inference:
+  device: auto
+
+# Retraining writes separate outputs; the fixed Table S4 checkpoints are preserved.
+training:
+  f2p:
+    output_dir: outputs/retrained/f2p
+    spectrum_length: 6400
+    patch_size: 16
+    embed_dim: 256
+    depth: 4
+    heads: 8
+    mask_ratio: 0.03
+    gamma: 11
+    noise_levels: [0.01, 0.05, 0.10]
+    train_repeats: 3
+    batch_size: 8
+    eval_batch_size: 16
+    accumulation_steps: 4
+    learning_rate: 0.0001
+    weight_decay: 0.0
+    epochs: 400
+    workers: 4
+    seed: 42
+  dn_unet:
+    output_dir: outputs/retrained/dn_unet
+    pretrained: outputs/pretrained/dn_unet.pth
+    noise_levels: [0.01, 0.05, 0.10]
+    identity_probability: 0.10
+    train_repeats: 1
+    epochs: 50
+    batch_size: 4
+    learning_rate: 0.00001
+    weight_decay: 0.00001
+    freeze_encoder_epochs: 5
+    workers: 4
+    seed: 42
+    device: cuda
+    no_amp: true
+  ld_net:
+    output_dir: outputs/retrained/ld_net
+    pretrained: outputs/pretrained/ld_net.pth
+    noise_levels: [0.01, 0.05, 0.10]
+    identity_probability: 0.10
+    train_repeats: 1
+    epochs: 100
+    batch_size: 32
+    learning_rate: 0.0001
+    weight_decay: 0.00001
+    workers: 4
+    seed: 42
+    device: cuda

@@ -176,15 +176,15 @@ class AUNet(nn.Module, ABC):
         return out
 
 
-# 测试模型初始化
+# Test model initialization.
 if __name__ == "__main__":
-    # 模拟输入数据 [B, 1, 1600]
+    # Example input [B, 1, 1600].
     dummy_input = torch.randn(8, 1, 1600)
 
     print("\n--- Testing CBAMUNet (Original First AUNet) ---")
     model_cbam = AUNet(ch_in=1, ch_out=1)
     output_cbam = model_cbam(dummy_input)
-    print(f"输入形状: {dummy_input.shape}")
-    print(f"输出形状: {output_cbam.shape}")
+    print(f"Input shape: {dummy_input.shape}")
+    print(f"Output shape: {output_cbam.shape}")
     num_params_cbam = sum(p.numel() for p in model_cbam.parameters() if p.requires_grad)
-    print(f"CBAMUNet 参数总数: {num_params_cbam:,}")
+    print(f"CBAMUNet parameters: {num_params_cbam:,}")

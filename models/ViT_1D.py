@@ -44,7 +44,7 @@ def get_1d_sincos_pos_embed_from_grid(embed_dim, pos, cls_token=False):
     """
     assert embed_dim % 2 == 0
     omega = np.arange(embed_dim // 2, dtype=np.float64)
-    omega /= embed_dim / 2.         # 将每个位置进行归一化
+    omega /= embed_dim / 2.         # Normalize each position.
     omega = 1. / 10000**omega  # (D/2,)
 
     pos = np.arange(pos, dtype=np.float64)
@@ -258,4 +258,3 @@ def spectra_ViT1D_patch100_dim128_h4(**kwargs):
     return model
 
 spectra_ViT1D_patch100 = spectra_ViT1D_patch100_dim128_h4
-    

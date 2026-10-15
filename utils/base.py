@@ -141,14 +141,11 @@ def spectra_alignment(spectra_noisy_orig, original_length, target_length):
 
     if original_length > target_length:
         processing_mode = 'resample'
-        print(f"Spectrum length ({original_length}) > target length ({target_length}), using resample for downsampling.")
         spectra_processed = spectra_resample(spectra_noisy_orig, target_length)
     elif original_length < target_length:
         processing_mode = 'resample'
-        print(f"Spectrum length ({original_length}) > target length ({target_length}), using resample for downsampling.")
         spectra_processed = spectra_resample(spectra_noisy_orig, target_length)
         # processing_mode = 'pad'
-        # print(f"Spectrum length ({original_length}) < target length ({target_length}), using reflection mode for padding.")
         # total_padding = target_length - original_length
         # pad_left = total_padding // 2
         # pad_right = total_padding - pad_left
@@ -156,19 +153,14 @@ def spectra_alignment(spectra_noisy_orig, original_length, target_length):
         # spectra_processed = np.pad(spectra_noisy_orig, pad_width=padding_width, mode='reflect')
     else:
         spectra_processed = spectra_noisy_orig
-        print("Spectrum length matches config, no processing needed.")
-
-    print(f"Processed spectrum shape: {spectra_processed.shape}")
     
     return spectra_processed, processing_mode, pad_left
 
 
 def spectra_alignment_reverse(spectra, alignment_mode, original_length, pad_left):
     if alignment_mode == 'resample':
-        print(f"Resampling back to original length {original_length}")
         spectra_processed = spectra_resample(spectra, original_length)
     elif alignment_mode == 'pad':
-        print(f"Cropping spectrum to remove padding, restoring original length {original_length}")
         crop_end = pad_left + original_length
         spectra_processed = spectra[:, pad_left:crop_end]
     else:
@@ -210,7 +202,6 @@ def load_state(net, state_dict, ddp=False, strict=False):
                 print(f'Key missing: {name}')
                 raise RuntimeError(f'Key missing: {name}')
 
-    print("Model loaded successfully.")
     return net
 
 

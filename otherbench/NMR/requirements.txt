@@ -1,0 +1,9 @@
+numpy
+scipy
+h5py
+PyWavelets
+torch
+PyYAML
+timm
+einops
+tensorboard

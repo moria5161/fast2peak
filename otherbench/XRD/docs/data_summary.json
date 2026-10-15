@@ -1,0 +1,59 @@
+{
+  "source_patterns": 815,
+  "accepted_patterns": 715,
+  "rejected_patterns": 100,
+  "crop": {
+    "start_index": 0,
+    "length": 1600,
+    "two_theta_min": 2.01,
+    "two_theta_max": 25.995,
+    "reason": "highest aggregate-signal contiguous 1600-point window; preserves 85.5% of normalized full-range signal"
+  },
+  "quality_control": {
+    "min_robust_snr": 30.0,
+    "max_high_frequency_ratio": 0.6
+  },
+  "gt_shape": [
+    715,
+    1600
+  ],
+  "noise_conditions": [
+    {
+      "name": "gaussian_sigma_0.02",
+      "kind": "gaussian",
+      "sigma": 0.02
+    },
+    {
+      "name": "gaussian_sigma_0.05",
+      "kind": "gaussian",
+      "sigma": 0.05
+    },
+    {
+      "name": "gaussian_sigma_0.10",
+      "kind": "gaussian",
+      "sigma": 0.1
+    },
+    {
+      "name": "poisson_peak_100",
+      "kind": "poisson",
+      "peak_counts": 100
+    },
+    {
+      "name": "poisson_peak_50",
+      "kind": "poisson",
+      "peak_counts": 50
+    },
+    {
+      "name": "poisson_peak_10",
+      "kind": "poisson",
+      "peak_counts": 10
+    },
+    {
+      "name": "mixed_peak_500_sigma_0.03",
+      "kind": "mixed",
+      "peak_counts": 500,
+      "sigma": 0.03
+    }
+  ],
+  "gt_caveat": "High-quality measured PXRD is used as reference GT; it is not physically noise-free ground truth."
+}

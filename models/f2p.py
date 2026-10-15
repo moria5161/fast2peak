@@ -88,7 +88,7 @@ class RelativeAttention(nn.Module):
         return self.to_out(out)
 
 
-class Block(nn.Module):
+class AbsoluteBlock(nn.Module):
     def __init__(self, dim, heads):
         super().__init__()
         self.norm1 = nn.LayerNorm(dim)
@@ -102,7 +102,7 @@ class Block(nn.Module):
         return x
 
 
-class RPEBlock(nn.Module):
+class Block(nn.Module):
     def __init__(self, dim, num_patches, heads):
         super().__init__()
         self.norm1 = nn.LayerNorm(dim)
@@ -181,7 +181,7 @@ class Decoder(nn.Module):
 
 
 @register_model
-class Fast2PeakConv(nn.Module):
+class F2PConv(nn.Module):
     def __init__(self, ks=3, dropout=0.2, **kwargs):
         super().__init__()
         channels = [32, 64, 128, 256]
@@ -197,40 +197,8 @@ class Fast2PeakConv(nn.Module):
         x = self.decoder(x, skips[::-1])
         return self.head(x)
 
-
 @register_model
-class Fast2Peak(nn.Module):
-    def __init__(self, spectrum_length, patch_size, embed_dim, depth, heads, **kwargs):
-        super().__init__()
-        if spectrum_length % patch_size != 0:
-            raise ValueError("The spectral length must be divisible by the size of the patch")
-        self.num_patches = spectrum_length // patch_size
-        self.patch_embed = PatchEmbed(patch_size, embed_dim)
-        self.pos_embed = nn.Parameter(position_embedding(embed_dim, self.num_patches), requires_grad=False)
-        self.transformer_blocks = nn.ModuleList([Block(embed_dim, heads) for _ in range(depth)])
-        self.decoder = nn.Sequential(
-                            nn.Linear(embed_dim, embed_dim * 2),
-                            nn.GELU(),
-                            nn.Linear(embed_dim * 2, patch_size)
-                                    )
-        self.patch_size = patch_size
-
-    def unpatchify(self, patches):
-        B, n_patches, p = patches.shape
-        C = 1
-        L = n_patches * p
-        return patches.reshape(B, n_patches, C, p).permute(0, 2, 1, 3).reshape(B, C, L)
-
-    def forward(self, x):
-        patches = self.patch_embed(x) + self.pos_embed
-        for blk in self.transformer_blocks:
-            patches = blk(patches)
-        pred_patches = self.decoder(patches)
-        return self.unpatchify(pred_patches)
-
-
-@register_model
-class Fast2PeakRPE(nn.Module):
+class F2P(nn.Module):
     def __init__(self, spectrum_length, patch_size, embed_dim, depth, heads, **kwargs):
         super().__init__()
         if spectrum_length % patch_size != 0:
@@ -240,7 +208,7 @@ class Fast2PeakRPE(nn.Module):
         self.patch_embed = PatchEmbed(patch_size, embed_dim)
         
         self.transformer_blocks = nn.ModuleList([
-            RPEBlock(embed_dim, self.num_patches, heads) for _ in range(depth)
+            Block(embed_dim, self.num_patches, heads) for _ in range(depth)
         ])
         
         self.decoder = nn.Sequential(
@@ -267,7 +235,44 @@ class Fast2PeakRPE(nn.Module):
 
 
 @register_model
-class Fast2PeakOverlap(nn.Module):
+class F2PHeadFT(F2P):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.patch_embed.requires_grad_(False)
+        self.transformer_blocks.requires_grad_(False)
+
+
+@register_model
+class F2PHeadRes(F2P):
+    def __init__(self, embed_dim, patch_size, **kwargs):
+        super().__init__(embed_dim=embed_dim, patch_size=patch_size, **kwargs)
+        self.requires_grad_(False)
+
+        self.head_norm = nn.LayerNorm(embed_dim)
+        self.res_head = nn.Sequential(
+            nn.Conv1d(embed_dim, embed_dim, kernel_size=3, padding=1),
+            nn.GELU(),
+            nn.Conv1d(embed_dim, embed_dim, kernel_size=3, padding=1),
+            nn.GELU(),
+            nn.Conv1d(embed_dim, patch_size, kernel_size=1)
+        )
+        nn.init.zeros_(self.res_head[-1].weight)
+        nn.init.zeros_(self.res_head[-1].bias)
+
+    def forward(self, x):
+        with torch.no_grad():
+            patches = self.patch_embed(x)
+            for blk in self.transformer_blocks:
+                patches = blk(patches)
+            pred_patches = self.decoder(patches)
+
+        features = self.head_norm(patches).transpose(1, 2)
+        residual = self.res_head(features).transpose(1, 2)
+        return self.unpatchify(pred_patches + residual)
+
+
+@register_model
+class F2POverlap(nn.Module):
     def __init__(self, spectrum_length, patch_size, embed_dim, depth, heads, overlap_ratio=0.25, **kwargs):
         super().__init__()
         self.spectrum_length = spectrum_length
@@ -283,7 +288,7 @@ class Fast2PeakOverlap(nn.Module):
         self.patch_embed = OverlapPatchEmbed(patch_size, self.stride, embed_dim)
         
         self.transformer_blocks = nn.ModuleList([
-            RPEBlock(embed_dim, self.num_patches, heads) for _ in range(depth)
+            Block(embed_dim, self.num_patches, heads) for _ in range(depth)
         ])
         
         self.decoder = nn.Sequential(
@@ -327,14 +332,13 @@ class Fast2PeakOverlap(nn.Module):
 
 if __name__ == "__main__":
     from thop import profile
-    # net = Fast2PeakConv()
-    # net = Fast2Peak(spectrum_length=1600, patch_size=16, embed_dim=256, depth=8, heads=8)
-    net = Fast2PeakRPE(spectrum_length=1600, patch_size=16, embed_dim=256, depth=8, heads=8)
-    # net = Fast2PeakOverlap(spectrum_length=1600, patch_size=16, embed_dim=256, depth=8, heads=8)
+    # net = F2PConv()
+    net = F2P(spectrum_length=1600, patch_size=16, embed_dim=256, depth=8, heads=8)
+    # net = F2POverlap(spectrum_length=1600, patch_size=16, embed_dim=256, depth=8, heads=8)
     x = torch.randn(1, 1, 1600)
     y = net(x)
     print(y.shape)
 
     macs, params = profile(net, inputs=(x,))
 
-    print(f'params: {params/1e6} M, macs: {macs/1e9} G') 
+    print(f'params: {params/1e6} M, macs: {macs/1e9} G')

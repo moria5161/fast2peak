@@ -237,13 +237,13 @@ def SMAE(**kwargs):
 
 
 if __name__ == '__main__':
-    # 1. 生成随机输入数据 [Batch, Channel, Length]
+    # 1. Generate random input [Batch, Channel, Length].
     input_tensor = torch.randn(2, 1, 1600)
     
-    # 2. 实例化模型
+    # 2. Initialize the model.
     model = SMAE() 
     
-    # 3. 将数据输入模型进行前向传播 (调用 forward)
+    # 3. Run the forward pass.
     loss, pred, mask = model(input_tensor) 
     
     print(f"Loss: {loss}")

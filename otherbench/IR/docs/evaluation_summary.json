@@ -1,0 +1,61 @@
+{
+  "checkpoint": "/home/slurmusers/moria/codes/fast2peak_v2/experiments/training f2p rpe/checkpoints/best_checkpoint.pth",
+  "checkpoint_epoch": 856,
+  "checkpoint_score": 0.00011769396951422095,
+  "model_config": {
+    "model_name": "Fast2PeakRPE",
+    "spectrum_length": 1600,
+    "patch_size": 16,
+    "embed_dim": 256,
+    "depth": 8,
+    "heads": 8
+  },
+  "device": "cuda",
+  "batch_size": 128,
+  "samples": 4000,
+  "inference_seconds": 1.398695945739746,
+  "metrics": {
+    "input": {
+      "pearson_mean": 0.8502703905105591,
+      "pearson_median": 0.872552752494812,
+      "pearson_q25": 0.8012480735778809,
+      "pearson_q75": 0.9135926961898804,
+      "rmse_mean": 0.07478425651788712,
+      "snr_db_mean": 5.565309524536133
+    },
+    "paper_nn": {
+      "pearson_mean": 0.9444075226783752,
+      "pearson_median": 0.9461754560470581,
+      "pearson_q25": 0.9150060415267944,
+      "pearson_q75": 0.9793457388877869,
+      "rmse_mean": 0.04083406552672386,
+      "snr_db_mean": 11.547711372375488
+    },
+    "savgol": {
+      "pearson_mean": 0.9142796397209167,
+      "pearson_median": 0.9315900802612305,
+      "pearson_q25": 0.8666866421699524,
+      "pearson_q75": 0.9686620235443115,
+      "rmse_mean": 0.0456501841545105,
+      "snr_db_mean": 10.035408973693848
+    },
+    "f2p_raw": {
+      "pearson_mean": 0.9848813414573669,
+      "pearson_median": 0.986900806427002,
+      "pearson_q25": 0.9818182587623596,
+      "pearson_q75": 0.9902355074882507,
+      "rmse_mean": 0.02167232520878315,
+      "snr_db_mean": 16.38170051574707
+    },
+    "f2p_corrected": {
+      "pearson_mean": 0.9848813414573669,
+      "pearson_median": 0.9869018793106079,
+      "pearson_q25": 0.9818185567855835,
+      "pearson_q75": 0.9902362823486328,
+      "rmse_mean": 0.021669628098607063,
+      "snr_db_mean": 16.38446807861328
+    }
+  },
+  "f2p_corrected_win_rate_vs_paper_nn": 0.92275,
+  "f2p_corrected_win_rate_vs_savgol": 0.99975
+}

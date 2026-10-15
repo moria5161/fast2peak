@@ -1,11 +1,22 @@
-# 开发环境相关
+# Development environment
 __pycache__/
 _pycache_*.pyc
-*.pyc
+*.py[cod]
 *.class
 .vscode/
+.claude/
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+.DS_Store
 
-# 数据文件
+# Data files
 datasets/*
 experiments/*
 logs/*
@@ -13,16 +24,24 @@ logs/*
 notebooks/*
 scripts/*
 smae/*
+otherbench/*/datasets/
+otherbench/*/scripts/
+otherbench/*/outputs/
+othermethods/*/datasets/
+/outputs/
 
 *.pth
 *.pt
+*.ckpt
+*.safetensors
+events.out.tfevents.*
 
-# 输出和临时文件
+# Outputs and temporary files
 *_logs
 *.log
 
 tmp/
-tmp*
+tmp*/
 slurm_*
 
 push2hf.py

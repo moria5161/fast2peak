@@ -1,0 +1,10 @@
+# Retained PyTorch IR workflow; TensorFlow is not required.
+numpy
+scipy
+scikit-learn
+h5py
+torch
+PyYAML
+timm
+einops
+tensorboard

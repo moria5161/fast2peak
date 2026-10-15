@@ -21,27 +21,28 @@ def train(model, args, device, local_rank, world_size, log_dir, checkpoint_dir):
     loader_train, loader_val, sampler_train = data_loaders(args)
     if local_rank == 0:
         print(f"Data Loaded. Train batches: {len(loader_train)}, Val batches: {len(loader_val)}")
+        if args.sft:
+            print('[SFT] Full-spectrum MSE against GT; no masking. Select by validation MSE.')
         
     trainable_params = filter(lambda p: p.requires_grad, model.parameters())
     
     optimizer = optim.AdamW(trainable_params, lr=args.lr, weight_decay=args.weight_decay)
     
     # optimizer = optim.AdamW(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
-    scheduler = CosineLRScheduler(optimizer, t_initial=args.epochs, lr_min=args.lr * 0.01, 
-                                warmup_t=10, warmup_lr_init=args.lr * 0.1, cycle_limit=1, t_in_epochs=True)
+    min_lr = args.min_lr if args.min_lr is not None else args.lr * 0.01
+    scheduler = CosineLRScheduler(optimizer, t_initial=args.epochs, lr_min=min_lr,
+                                warmup_t=args.warmup_epochs, warmup_lr_init=args.lr * 0.1,
+                                cycle_limit=1, t_in_epochs=True)
     
-    start_epoch = 1
+    start_epoch = 0 if args.sft else 1
     if args.resume:
-        if local_rank == 0:
-            print(f"Attempting to resume optimizer and scheduler from: {args.resume}")
-        checkpoint = torch.load(args.resume, map_location=device)
+        map_loc = f'cuda:{device}' if isinstance(device, int) else device
+        checkpoint = torch.load(args.resume, map_location=map_loc)
         if isinstance(checkpoint, dict):
             if 'optimizer_state_dict' in checkpoint:
                 optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
-                if local_rank == 0: print("Optimizer state loaded.")
             if 'scheduler_state_dict' in checkpoint:
                 scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
-                if local_rank == 0: print("Scheduler state loaded.")
             if 'epoch' in checkpoint:
                 start_epoch = checkpoint['epoch'] + 1
                 if local_rank == 0: print(f"Resuming from epoch {start_epoch}")
@@ -53,7 +54,11 @@ def train(model, args, device, local_rank, world_size, log_dir, checkpoint_dir):
     train_meter = AverageMeter()
     val_meter = AverageMeter()
     
-    early_stopping = EarlyStop(patience=int(args.epochs * 0.8), mode='min', delta=1e-10)
+    patience = args.patience if args.patience is not None else int(args.epochs * 0.8)
+    early_stopping = EarlyStop(patience=patience, mode='min', delta=1e-10)
+    if args.sft and args.resume and 'score' in checkpoint:
+        early_stopping.best_score = -float(checkpoint['score'])
+        early_stopping.val_score = float(checkpoint['score'])
 
     for epoch in range(start_epoch, args.epochs + 1):
         train_meter.reset()
@@ -63,19 +68,24 @@ def train(model, args, device, local_rank, world_size, log_dir, checkpoint_dir):
             sampler_train.set_epoch(epoch) # Ensure shuffling for each epoch in DDP
         model.train()
 
-        for batch in loader_train:
-            label, input_spec, mask = batch['label'].to(device), batch['input'].to(device), batch['mask'].to(device)
+        # Epoch 0 evaluates the pretrained model before any updates.
+        for batch in (loader_train if epoch > 0 else []):
+            label, input_spec = batch['label'].to(device), batch['input'].to(device)
+            if not args.sft:
+                mask = batch['mask'].to(device)
             optimizer.zero_grad()
             with autocast(device_type="cuda", enabled=torch.cuda.is_available()):
                 
-                if args.model_name in ['SMAE', 'RamanMAE', '2DSMAE']:
+                if args.sft:
+                    output = model(input_spec)
+                    loss = loss_function(output, label)
+                elif args.model_name in ['SMAE', 'RamanMAE', '2DSMAE']:
                     # Mask ratio handling
                     mask_r = args.smae_mask_ratio if args.model_name in ['SMAE', '2DSMAE'] else args.mask_ratio
                     loss, _, _ = model(input_spec, mask_ratio=mask_r)
                 else:
                     output = model(input_spec)
                     loss = loss_function(output * (1 - mask), label * (1 - mask))
-                    # 计算全谱的损失
                     # loss = loss_function(output, label)
                     
             scaler.scale(loss).backward()
@@ -98,14 +108,19 @@ def train(model, args, device, local_rank, world_size, log_dir, checkpoint_dir):
         with torch.no_grad():
             with autocast(device_type="cuda", enabled=torch.cuda.is_available()):
                 for data in loader_val:
-                    label, input_spec, mask = data['label'].to(device), data['input'].to(device), data['mask'].to(device)
-                    if args.model_name in ['SMAE', 'RamanMAE', '2DSMAE']:
+                    label, input_spec = data['label'].to(device), data['input'].to(device)
+                    if not args.sft:
+                        mask = data['mask'].to(device)
+                    if args.sft:
+                        output = model(input_spec)
+                        loss = loss_function(output, label)
+                    elif args.model_name in ['SMAE', 'RamanMAE', '2DSMAE']:
                         mask_r = args.smae_mask_ratio if args.model_name in ['SMAE', '2DSMAE'] else args.mask_ratio
                         loss, _, _ = model(input_spec, mask_ratio=mask_r)
                     else:
                         output = model(input_spec)
                         loss = loss_function(output * (1 - mask), label * (1 - mask))
-                    # 计算全谱的损失
+                    # Full-spectrum loss.
                     # loss = loss_function(output, label)
                     val_meter.update(loss.item(), input_spec.size(0))
         
@@ -120,9 +135,13 @@ def train(model, args, device, local_rank, world_size, log_dir, checkpoint_dir):
         
         best_model_path = None
         if local_rank == 0:
-            print(f"Epoch {epoch} | Train Loss: {avg_train_loss:.6f} | Val Loss: {avg_val_loss:.6f}")
-            current_lr = optimizer.param_groups[0]['lr']
-            logger.log_epoch_metrics(epoch, avg_train_loss, avg_val_loss, current_lr)
+            if epoch == 0:
+                print(f"Epoch 0 | Initial Val Loss: {avg_val_loss:.8f}")
+                logger.writer.add_scalar('Loss/epoch_val', avg_val_loss, epoch)
+            else:
+                print(f"Epoch {epoch} | Train Loss: {avg_train_loss:.8f} | Val Loss: {avg_val_loss:.8f}")
+                current_lr = optimizer.param_groups[0]['lr']
+                logger.log_epoch_metrics(epoch, avg_train_loss, avg_val_loss, current_lr)
             best_model_path = os.path.join(checkpoint_dir, 'best_checkpoint.pth')
             
         early_stopping(
@@ -152,7 +171,8 @@ def train(model, args, device, local_rank, world_size, log_dir, checkpoint_dir):
                 }
                 torch.save(checkpoint, snapshot_path)
 
-        scheduler.step(epoch)
+        if epoch > 0:
+            scheduler.step(epoch)
 
     if logger:
         logger.close()
@@ -201,22 +221,6 @@ def test_single_file(model, args, device, output_dir, file_path):
     spectra_norm = (spectra_processed - min_vals) / (max_vals - min_vals + 1e-8)
 
     model.eval()
-    
-    # # ================= (Deep Warm-up) =================
-    # print("Starting warm-up...")
-    # dummy_input_np = np.random.randn(1, 1, args.spectrum_length).astype(np.float32)
-    # with torch.no_grad():
-    #     for _ in range(1): 
-    #         tmp_tensor = torch.from_numpy(dummy_input_np).to(device)
-    #         if args.model_name == 'SMAE':
-    #             _, tmp_out, _ = model(tmp_tensor, mask_ratio=args.smae_mask_ratio)
-    #             tmp_out = model.unpatchify(tmp_out)
-    #         else:
-    #             tmp_out = model(tmp_tensor)
-    #         _ = tmp_out.cpu().numpy()
-    # torch.cuda.synchronize()
-    # print("Warm-up completed, starting formal testing!")
-    # # ===================================================================
 
     test_start_time = time.time()
     denoised_list = []
@@ -240,12 +244,14 @@ def test_single_file(model, args, device, output_dir, file_path):
     inference_time = time.time() - test_start_time
 
     print(f"Denoising complete, time elapsed: {inference_time:.4f}s")
-    # from IPython import embed; embed()  # Debug point to inspect variables before post-processing
     denoised_norm = np.concatenate(denoised_list, axis=0).squeeze(1)
     denoised_extended = denoised_norm * (max_vals - min_vals + 1e-8) + min_vals
     
     denoised_final = spectra_alignment_reverse(denoised_extended, alignment_mode, original_length, pad_left)
-    denoised_corrected = spectra_correction(spectra_noisy_orig, denoised_final)
+    if args.sft:
+        denoised_corrected = denoised_final
+    else:
+        denoised_corrected = spectra_correction(spectra_noisy_orig, denoised_final)
 
     if test_datapath_lower.endswith('.txt'):
         np.savetxt(output_filename, np.column_stack((wavenumbers, denoised_corrected.squeeze())), fmt='%.6f')
@@ -253,12 +259,11 @@ def test_single_file(model, args, device, output_dir, file_path):
         if denoised_corrected.shape[1] == original_length:
             data_input['F2P'] = denoised_corrected
             sio.savemat(output_filename, data_input)
-            # 计算RMSE
+            # Compute RMSE.
             # data_gt = data_input['GT']
             # diff = (data_gt - denoised_corrected)**2
             # mse_per_spectrum = np.mean(diff, axis=1)
             # rmse = np.mean(np.sqrt(mse_per_spectrum))
-            # print(f"Average RMSE: {rmse:.4f}")
         else:
             print(f"Error: Denoised spectrum length ({denoised_corrected.shape[1]}) mismatch original ({original_length}), cannot save .mat file.")
     elif test_datapath_lower.endswith('.h5'):
@@ -272,7 +277,7 @@ def test_single_file(model, args, device, output_dir, file_path):
         
         if gt is not None:
             num_samples = gt.shape[0]
-            all_metrics = np.array([calculate_metrics(gt[i], denoised_corrected[i]) for i in range(num_samples)])
+            all_metrics = np.array([calculate_metrics(denoised_corrected[i], gt[i]) for i in range(num_samples)])
             
             avg_snr = np.round(np.mean(all_metrics[:, 0]), 2)
             avg_rmse = np.round(np.mean(all_metrics[:, 1]), 4)
@@ -294,7 +299,6 @@ def test_single_file(model, args, device, output_dir, file_path):
                 f_eval.write("=========================================================\n")
             
             print(f"Metrics saved to: {eval_filepath}")
-            print(f"Detailed metrics saved to: {csv_filepath} (For Boxplots)")
             print(f"Final Results -> SNR: {avg_snr} | RMSE: {avg_rmse} | SSS: {avg_sss}")
         else:
             print("Ground truth not found. Skipping evaluation.")

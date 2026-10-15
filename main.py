@@ -33,7 +33,7 @@ def parse_args():
     group_exp.add_argument('--seed', default=615, type=int)
 
     group_model = parser.add_argument_group('Model')
-    group_model.add_argument('--model_name', default='Fast2Peak', type=str)
+    group_model.add_argument('--model_name', default='F2P', type=str)
     group_model.add_argument('--spectrum_length', default=1600, type=int)
     group_model.add_argument('--patch_size', default=16, type=int)
     group_model.add_argument('--embed_dim', default=256, type=int)
@@ -54,6 +54,9 @@ def parse_args():
     group_train.add_argument('--epochs', default=1000, type=int)
     group_train.add_argument('--batch_size', default=512, type=int)
     group_train.add_argument('--lr', default=1e-4, type=float)
+    group_train.add_argument('--min_lr', default=None, type=float)
+    group_train.add_argument('--warmup_epochs', default=10, type=int)
+    group_train.add_argument('--patience', default=None, type=int)
     group_train.add_argument('--weight_decay', default=1e-3, type=float)
 
     group_data = parser.add_argument_group('Data')
@@ -65,6 +68,7 @@ def parse_args():
 
     group_mode = parser.add_argument_group('Mode')
     group_mode.add_argument('--train', action='store_true')
+    group_mode.add_argument('--sft', action='store_true', help='Supervised F2P training with paired noisy/gt spectra')
     group_mode.add_argument('--test', action='store_true')
     group_mode.add_argument('--ddp', action='store_true')
 
@@ -78,11 +82,20 @@ def parse_args():
 
 
 def load_config(args):
+    old_model_names = {
+        'Fast2PeakRPE': 'F2P',
+        'Fast2PeakRPEHeadFT': 'F2PHeadFT',
+        'Fast2PeakConv': 'F2PConv',
+        'Fast2PeakOverlap': 'F2POverlap',
+    }
+    args.model_name = old_model_names.get(args.model_name, args.model_name)
     target_path = None
     if args.resume:
         target_path = args.resume
     elif args.test and args.test_model_path:
         target_path = args.test_model_path
+    elif args.sft and args.pretrained:
+        target_path = args.pretrained
 
     if not target_path:
         return args
@@ -96,9 +109,17 @@ def load_config(args):
             'model_name', 'spectrum_length', 'embed_dim', 
             'depth', 'heads', 'patch_size', 'gamma', 'num_convs', 'ks'
         ]
+    if args.sft and args.pretrained and not args.resume and not args.test and args.model_name in ['F2PHeadFT', 'F2PHeadRes']:
+        structure_keys.remove('model_name')
     for key in structure_keys:
         if key in config_dict and hasattr(args, key):
             setattr(args, key, config_dict[key])
+    args.model_name = old_model_names.get(args.model_name, args.model_name)
+    if args.resume or (args.test and args.test_model_path):
+        saved_sft = config_dict.get('sft', False)
+        if args.resume and args.sft and not saved_sft:
+            raise ValueError('Use --pretrained to start SFT from a self-supervised checkpoint, not --resume.')
+        args.sft = saved_sft
     print(f"[Config] Restored model structure from: {config_path}")
     return args
 
@@ -160,7 +181,17 @@ def init_model(args, device, local_rank):
     if load_path:
         map_loc = f'cuda:{device}' if isinstance(device, int) else device
         checkpoint = torch.load(load_path, map_location=map_loc)
-        load_state(model, checkpoint, ddp=args.ddp, strict=strict)
+        if args.sft:
+            state_dict = checkpoint.get('model_state_dict', checkpoint)
+            state_dict = {k.removeprefix('module.'): v for k, v in state_dict.items()}
+            if args.model_name == 'F2PHeadRes' and args.pretrained and not args.resume and not args.test:
+                head_state = {k: v for k, v in model.state_dict().items()
+                              if k.startswith(('head_norm.', 'res_head.'))}
+                if not any(k in state_dict for k in head_state):
+                    state_dict.update(head_state)
+            model.load_state_dict(state_dict, strict=True)
+        else:
+            load_state(model, checkpoint, ddp=args.ddp, strict=strict)
     
     # if args.pretrained and not args.test: 
     #     frozen_count = 0
@@ -172,8 +203,6 @@ def init_model(args, device, local_rank):
     #         #     param.requires_grad = False
     #         #     frozen_count += 1
                 
-    #     if local_rank == 0:
-    #         print(f"[Freeze] 微调模式：在 DDP 初始化前已成功冻结 {frozen_count} 个参数。")
     
     if args.ddp:
         model = DDP(model, device_ids=[local_rank])
@@ -184,6 +213,8 @@ def init_model(args, device, local_rank):
 def main():
     args = parse_args()
     args = load_config(args)
+    if args.sft and args.model_name not in ['F2P', 'F2PHeadFT', 'F2PHeadRes', 'F2PConv', 'F2POverlap']:
+        raise ValueError('--sft currently supports F2P models only.')
     
     if args.seed is not None:
         seed_everything(args.seed)

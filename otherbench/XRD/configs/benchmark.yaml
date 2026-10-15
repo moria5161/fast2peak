@@ -1,0 +1,63 @@
+# Paths are relative to otherbench/XRD.
+paths:
+  raw_data: datasets/raw
+  benchmark_data: datasets/benchmark
+  evaluation_output: outputs/evaluation
+  public_docs: docs
+
+inference:
+  device: auto
+
+seed: 42
+
+crop:
+  start_index: 0
+  length: 1600
+  expected_two_theta_min: 2.010
+  expected_two_theta_max: 25.995
+
+quality_control:
+  min_robust_snr: 30.0
+  max_high_frequency_ratio: 0.60
+
+noise_conditions:
+  - name: gaussian_sigma_0.02
+    kind: gaussian
+    sigma: 0.02
+  - name: gaussian_sigma_0.05
+    kind: gaussian
+    sigma: 0.05
+  - name: gaussian_sigma_0.10
+    kind: gaussian
+    sigma: 0.10
+  - name: poisson_peak_100
+    kind: poisson
+    peak_counts: 100
+  - name: poisson_peak_50
+    kind: poisson
+    peak_counts: 50
+  - name: poisson_peak_10
+    kind: poisson
+    peak_counts: 10
+  - name: mixed_peak_500_sigma_0.03
+    kind: mixed
+    peak_counts: 500
+    sigma: 0.03
+
+baselines:
+  savgol:
+    window_length: 15
+    polyorder: 3
+  wavelet:
+    family: coif4
+    level: 4
+    threshold_mode: soft
+
+peak_metrics:
+  min_prominence: 0.05
+  min_distance_points: 3
+  matching_tolerance_degree: 0.06
+
+f2p:
+  checkpoint: "../../experiments/training f2p rpe/checkpoints/best_checkpoint.pth"
+  batch_size: 128

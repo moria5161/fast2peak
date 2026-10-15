@@ -69,13 +69,13 @@ class Pathogenic_Unsupervise(Dataset):
     def __init__(self, data, transform=None):
         self.data = data.astype(np.float32)
         self.transform = transform
-        self.real_len = len(self.data)  # 修正：统一为 self.data
+        self.real_len = len(self.data)  # Use the stored array length.
 
     def __len__(self):
         return self.real_len
 
     def __getitem__(self, index):
-        # 修正：使用 self.data，并加上 .copy() 防止 transform 的 in-place 修改污染原数组
+        # Copy the spectrum so in-place transforms cannot modify the source data.
         y = self.data[index].copy() 
         
         if self.transform:
@@ -138,7 +138,7 @@ class BlockMaskDataset(Dataset):
         self.spectrum_length = data.shape[1]
         self.gamma = gamma
         self.mask_ratio = mask_ratio
-        # 新增：掩码块的大小，建议与 patch_size 保持一致或略大
+        # Mask block size; typically close to patch_size.
         self.block_size = block_size 
 
     def __len__(self):
@@ -154,31 +154,31 @@ class BlockMaskDataset(Dataset):
         }
 
     def generate_mask(self, spectrum):
-        # 计算总共需要掩码的点数
+        # Total number of points to mask.
         total_mask_points = int(self.spectrum_length * self.mask_ratio)
-        # 计算需要掩码的“块(Block)”的数量
+        # Number of mask blocks.
         num_blocks = total_mask_points // self.block_size
         
         mask = np.ones(self.spectrum_length, dtype=np.float32)
         input_spec = spectrum.copy()
 
         if num_blocks > 0:
-            # 随机选择块的起始索引 (确保块不会超出边界)
+            # Sample block starts within the spectrum bounds.
             valid_start_indices = self.spectrum_length - self.block_size
             block_starts = np.random.choice(valid_start_indices, num_blocks, replace=False)
             
-            # 生成所有被掩码的精确索引
+            # Collect the exact indices covered by each block.
             idx_mask = []
             for start in block_starts:
                 idx_mask.extend(range(start, start + self.block_size))
             idx_mask = np.array(idx_mask)
             
-            # 保留您原有的相邻点偏移（Jitter）替换逻辑，增加任务难度
+            # Replace masked points with neighboring values.
             offset = np.random.randint(-self.gamma // 2, self.gamma // 2 + 1, len(idx_mask))
             offset[offset == 0] = 1
             idx_neighbor = np.clip(idx_mask + offset, 0, self.spectrum_length - 1)
             
-            # 执行掩码替换
+            # Apply the replacements.
             input_spec[idx_mask] = spectrum[idx_neighbor]
             mask[idx_mask] = 0.0
             
@@ -186,19 +186,22 @@ class BlockMaskDataset(Dataset):
 
 
 class BaseDataset(Dataset):
-    def __init__(self, noisy_data, clean_data):
+    def __init__(self, noisy_data, clean_data, return_mask=True):
         self.noisy = noisy_data.astype(np.float32)
         self.clean = clean_data.astype(np.float32)
+        self.return_mask = return_mask
 
     def __len__(self):
         return len(self.noisy)
 
     def __getitem__(self, index):
-        return {
+        sample = {
             'label': torch.from_numpy(self.clean[index]).unsqueeze(0),
             'input': torch.from_numpy(self.noisy[index]).unsqueeze(0),
-            'mask': torch.zeros((1, self.noisy.shape[1]), dtype=torch.float32)
         }
+        if self.return_mask:
+            sample['mask'] = torch.zeros((1, self.noisy.shape[1]), dtype=torch.float32)
+        return sample
 
 
 class RamanDataset(Dataset):
@@ -340,34 +343,62 @@ def data_load_process(file_path: str, key: str, target_length: int) -> np.ndarra
     return data
 
 
+def paired_data_load_process(file_path, target_length):
+    with h5py.File(file_path, 'r') as f:
+        noisy = f['noisy'][:].astype(np.float32)
+        gt = f['gt'][:].astype(np.float32)
+
+    if noisy.ndim != 2 or noisy.shape != gt.shape or 0 in noisy.shape:
+        raise ValueError(f'{file_path}: noisy and gt must have the same nonempty [N, L] shape.')
+    if not np.isfinite(noisy).all() or not np.isfinite(gt).all():
+        raise ValueError(f'{file_path}: noisy or gt contains NaN/Inf.')
+    if noisy.shape[1] != target_length:
+        noisy = spectra_resample(noisy, target_length)
+        gt = spectra_resample(gt, target_length)
+
+    # Both spectra use the noisy input's normalization parameters.
+    min_vals = np.min(noisy, axis=1, keepdims=True)
+    scale = np.max(noisy, axis=1, keepdims=True) - min_vals + 1e-8
+    return (noisy - min_vals) / scale, (gt - min_vals) / scale
+
+
 def data_loaders(args):
     data_dir = args.train_data_dir
     
     if os.path.isfile(data_dir):
+        if args.sft:
+            raise ValueError('SFT requires a directory containing separate train.h5 and valid.h5 (or val.h5).')
         train_path = data_dir
         val_path = data_dir
         print(f"[Training] Using single file as dataset: {train_path}")
     else:
         train_path = os.path.join(data_dir, 'train.h5')
         val_path = os.path.join(data_dir, 'val.h5')
+        if args.sft and os.path.isfile(os.path.join(data_dir, 'valid.h5')):
+            val_path = os.path.join(data_dir, 'valid.h5')
     
 
-    if args.model_name in ['SMAE', 'RamanMAE', '2DSMAE']:
+    if args.sft:
+        train_noisy, train_gt = paired_data_load_process(train_path, args.spectrum_length)
+        val_noisy, val_gt = paired_data_load_process(val_path, args.spectrum_length)
+        ds_train = BaseDataset(train_noisy, train_gt, return_mask=False)
+        ds_val = BaseDataset(val_noisy, val_gt, return_mask=False)
+        print(f'[SFT] Train: {train_path} ({len(ds_train)}), Val: {val_path} ({len(ds_val)})')
+
+    elif args.model_name in ['SMAE', 'RamanMAE', '2DSMAE']:
         if args.pretrained:
             train_path = args.fine_tune_data_path
             val_path = train_path
-            print(f"[Fine-tuning] f2p using data from: {train_path}")
         train_data = data_load_process(train_path, 'noisy', args.spectrum_length)
         val_data = data_load_process(val_path, 'noisy', args.spectrum_length)
         
         ds_train = Pathogenic_Unsupervise(train_data, transform=train_transform)
         ds_val = Pathogenic_Unsupervise(val_data, transform=valid_transform)
 
-    if args.model_name == 'Fast2Peak' or args.model_name == 'Fast2PeakConv':
+    elif args.model_name == 'F2PConv':
         if args.pretrained:
             train_path = args.fine_tune_data_path
             val_path = train_path
-            print(f"[Fine-tuning] f2p using data from: {train_path}")
         train_data = data_load_process(train_path, 'noisy', args.spectrum_length)
         val_data = data_load_process(val_path, 'noisy', args.spectrum_length)
         
@@ -376,11 +407,10 @@ def data_loaders(args):
         # ds_train = BlockMaskDataset(train_data, args.gamma, args.mask_ratio)
         # ds_val = BlockMaskDataset(val_data, args.gamma, args.mask_ratio)
         
-    if args.model_name == 'Fast2PeakRPE':
+    elif args.model_name in ['F2P', 'F2PHeadFT']:
         if args.pretrained:
             train_path = args.fine_tune_data_path
             val_path = train_path
-            print(f"[Fine-tuning] f2p using data from: {train_path}")
         train_data = data_load_process(train_path, 'noisy', args.spectrum_length)
         val_data = data_load_process(val_path, 'noisy', args.spectrum_length)
         
@@ -389,11 +419,10 @@ def data_loaders(args):
         ds_train = BlockMaskDataset(train_data, args.gamma, args.mask_ratio, args.block_size)
         ds_val = BlockMaskDataset(val_data, args.gamma, args.mask_ratio, args.block_size)
 
-    if args.model_name == 'Fast2PeakOverlap':
+    elif args.model_name == 'F2POverlap':
         if args.pretrained:
             train_path = args.fine_tune_data_path
             val_path = train_path
-            print(f"[Fine-tuning] f2p using data from: {train_path}")
         train_data = data_load_process(train_path, 'noisy', args.spectrum_length)
         val_data = data_load_process(val_path, 'noisy', args.spectrum_length)
 

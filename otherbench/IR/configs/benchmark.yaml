@@ -1,0 +1,32 @@
+# All paths are relative to otherbench/IR, independent of the working directory.
+paths:
+  paired_data: datasets/paired
+  autoencoder_output: outputs/autoencoder
+  evaluation_output: outputs/evaluation
+  public_docs: docs
+  f2p_checkpoint: "../../experiments/training f2p rpe/checkpoints/best_checkpoint.pth"
+
+data:
+  sigma_min: 0.05
+  sigma_max: 0.10
+  train_variations: 500
+  test_variations: 200
+  train_noise_seed: 0
+  test_noise_seed: 2048
+
+training:
+  epochs: 100
+  batch_size: 32
+  learning_rate: 0.001
+  val_reference_fraction: 0.10
+  seed: 42
+  num_workers: 0
+  device: auto
+
+inference:
+  batch_size: 128
+  device: auto
+
+savgol:
+  window_length: 15
+  polyorder: 1
