@@ -1,0 +1,701 @@
+{
+  "snapshot": "SMAE_restructure_20261015_CLddUJ",
+  "assets": [
+    {
+      "source": "datasets/X_finetune.npy",
+      "path": "datasets/X_finetune.npy",
+      "bytes": 24000128,
+      "sha256": "361acaf2fa8fe868c90c33d3321a6045c1ea6be915c5dafae8a3d41a9bb900ad"
+    },
+    {
+      "source": "datasets/X_reference.npy",
+      "path": "datasets/X_reference.npy",
+      "bytes": 480000128,
+      "sha256": "80040a919a6346b410745322b5593227823c77fb9ea4ae9b4bf7f4aef2a07e45"
+    },
+    {
+      "source": "datasets/y_finetune.npy",
+      "path": "datasets/y_finetune.npy",
+      "bytes": 24128,
+      "sha256": "aece34e11169d5cd9d13124b666d3e4d69f38f582817bcf66218abf6a9d55edb"
+    },
+    {
+      "source": "datasets/y_reference.npy",
+      "path": "datasets/y_reference.npy",
+      "bytes": 480128,
+      "sha256": "f7458e2a5256ae828c6c00d93cd5e6b9f7d04a455860c77382408b04943ac85f"
+    },
+    {
+      "source": "experiments/smae on simu/epoch_500_final.pth",
+      "path": "outputs/experiments/smae on simu/epoch_500_final.pth",
+      "bytes": 14885496,
+      "sha256": "4fa39aaaa976bf96c385332609c93e34f3c74da9f14594bcbe8891091595cc61"
+    },
+    {
+      "source": "experiments/smae on simu ps100/epoch_1000_final.pth",
+      "path": "outputs/experiments/smae on simu ps100/epoch_1000_final.pth",
+      "bytes": 14774765,
+      "sha256": "c80d762e1533bffa5cd149bdc33fc01df397d543a0b3f6fce7a09dcbc0a5f43c"
+    },
+    {
+      "source": "experiments/smae on simu ps16/epoch_1000_final.pth",
+      "path": "outputs/experiments/smae on simu ps16/epoch_1000_final.pth",
+      "bytes": 14774445,
+      "sha256": "b922a9072ab398d054b0670f0f38e6df59f5aeca579b61dcb762b5ab8da05942"
+    },
+    {
+      "source": "experiments/smae on simu ps2/epoch_1000_final.pth",
+      "path": "outputs/experiments/smae on simu ps2/epoch_1000_final.pth",
+      "bytes": 16179373,
+      "sha256": "fd64938fe5b3951a0a44ac64fa9cbcdc97682d2bd6ea693361cb66ba0e7d15ac"
+    },
+    {
+      "source": "experiments/smae on simu ps32/epoch_500_final.pth",
+      "path": "outputs/experiments/smae on simu ps32/epoch_500_final.pth",
+      "bytes": 14704760,
+      "sha256": "a2a71eee6d01b68dd3eb90bc931c913cabda195feb0c26b73cbe8b961a582862"
+    },
+    {
+      "source": "experiments/smae on simu ps4/epoch_1000_final.pth",
+      "path": "outputs/experiments/smae on simu ps4/epoch_1000_final.pth",
+      "bytes": 15364269,
+      "sha256": "adde88356e5ea920323e3a40c234cf088222c8fc5896312f1d5704ebf406117b"
+    },
+    {
+      "source": "experiments/smae on simu ps8/epoch_1000_final.pth",
+      "path": "outputs/experiments/smae on simu ps8/epoch_1000_final.pth",
+      "bytes": 14962797,
+      "sha256": "0e03fa12a5ec8523b896665231392807bdc0cca3da3de02310d302c0b07b65cb"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps1/epoch_300_final.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps1/epoch_300_final.pth",
+      "bytes": 17816021,
+      "sha256": "f0b0b5e02c1a8f730259974b5c0dabf50b0c0d28c1ccebcc3a3d8ae254a8c818"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps1 mr0.1/epoch_400.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps1 mr0.1/epoch_400.pth",
+      "bytes": 17815307,
+      "sha256": "3068cff18037638518f4509d8db1f65e832794109563a5d2bf28f0583d978f06"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps100/epoch_1000_final.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps100/epoch_1000_final.pth",
+      "bytes": 14774765,
+      "sha256": "1b6d59c63eada9c307f919671f09495b7ac82c1400da7b6070fef8c9e6f8570b"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps100 mr0.1/epoch_1000_final.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps100 mr0.1/epoch_1000_final.pth",
+      "bytes": 14775244,
+      "sha256": "538114b80aa8dfeaf95a2cd859407a97b2852a0e54d1139c2e1b9a97f2bdaa84"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16/epoch_1000_final.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16/epoch_1000_final.pth",
+      "bytes": 14774924,
+      "sha256": "5ff8196997b637d2ccd5457fbc01cad4da068d03881633bf541f59936478e7fe"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_1.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_1.pth",
+      "bytes": 14773213,
+      "sha256": "7c23861ca2903664bd5dc7683b9b10c83122e0e110f222414456e944e60d8d01"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_10.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_10.pth",
+      "bytes": 14773908,
+      "sha256": "792088f3448b90ccc4cb1d03ac01fd4ecf36380eabda9ed2162840724b91754d"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_100.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_100.pth",
+      "bytes": 14774027,
+      "sha256": "c47a09f3baddc377c8b144599a942bb10b67b53666687c686df43ef0ff09d8e8"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_11.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_11.pth",
+      "bytes": 14773908,
+      "sha256": "3ef7303f2be7c8762d7834d69e1633f509c98d64d7cb105b3f1d0728c659cecc"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_116.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_116.pth",
+      "bytes": 14774027,
+      "sha256": "d708edf0dfecc6ded76f95bc57dbfb61a9ee56c888c3b884cba18a17dc4ea06b"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_12.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_12.pth",
+      "bytes": 14773908,
+      "sha256": "5c61e9c204f70809dbe9d3235e3e8a3aeefdc9791defab3bf96e9ff8c74383b0"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_13.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_13.pth",
+      "bytes": 14773908,
+      "sha256": "4277ef5332e7859b32f03c759dff6f2672ee7a371dfcce8fa48fa358a93927e7"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_14.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_14.pth",
+      "bytes": 14773908,
+      "sha256": "3a0a85daf31ffe43d0188df962a7345c636f294fd48debf1248f42d3c1fbd4cb"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_15.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_15.pth",
+      "bytes": 14773908,
+      "sha256": "28ecdc7d9d3cb469e741d54e3a02425e29addd24c913f8505d25ae1fe79925f7"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_16.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_16.pth",
+      "bytes": 14773908,
+      "sha256": "16aff92d79651fa445eee6edfe71190390bfbc2652a41eed53620b3352c313a7"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_17.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_17.pth",
+      "bytes": 14773908,
+      "sha256": "610b43011d16cc5731250824f98097e88323ea2202496c2491fa652cc1a3fee2"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_18.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_18.pth",
+      "bytes": 14773908,
+      "sha256": "f34780735c651d84413fd01d5c7f9128e0e622bad4cd7f5548af9db1ddb4dc9c"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_19.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_19.pth",
+      "bytes": 14773908,
+      "sha256": "9318bc21febbd679016e50579fb5824e6f6ac9925d8c075c9838a8d41132a9ae"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_2.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_2.pth",
+      "bytes": 14773213,
+      "sha256": "e73cc2bac486a2f897a2728455033d48b7c5c2c386b892809b859601d16771f6"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_20.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_20.pth",
+      "bytes": 14773908,
+      "sha256": "8b80b7f89eb5d3d5d858e599c832227a8c2f99b2e84f7fd970d9ed65ddb7dda3"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_200.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_200.pth",
+      "bytes": 14774027,
+      "sha256": "bf699e154828e81000fbec3d6c579e0b4a7d395cd14d133f564b5a5e51865915"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_201.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_201.pth",
+      "bytes": 14774027,
+      "sha256": "c76637712deb4fd9569be1f60d2fbcc0d07f1407dccb4fb1625a2521d6f179f7"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_21.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_21.pth",
+      "bytes": 14773908,
+      "sha256": "ab2aa5c5aa9efed341ae3c61b5d3cea466935372adda98f5c4fec17733c5e69f"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_22.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_22.pth",
+      "bytes": 14773908,
+      "sha256": "c59bc0168594ae7584a67569e1329910b31146da702851228a4882499ca40fab"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_23.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_23.pth",
+      "bytes": 14773908,
+      "sha256": "c050516f5358e6787e793319db765c2debd7da0be6f18946c673d5e838533f0b"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_25.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_25.pth",
+      "bytes": 14773908,
+      "sha256": "3164b3e0bbfb5fa33c13e6f253ae920931bdd34440b0ec233af58a108d18d156"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_26.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_26.pth",
+      "bytes": 14773908,
+      "sha256": "7c6a2a8b9a0e82d4a6a906f2c1705f661bdcf1fc10519bf748d722d6f8f1d305"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_28.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_28.pth",
+      "bytes": 14773908,
+      "sha256": "29d58f4a5221cb276a6af16bf18a364f33abe5719b3714d9be029c825f156c86"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_3.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_3.pth",
+      "bytes": 14773213,
+      "sha256": "ff4ba38a49b963632a475b2f7797cda2d00c1d601b24e7b53c4291befeb619f3"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_30.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_30.pth",
+      "bytes": 14773908,
+      "sha256": "83b36469950081d4e3df5261b50bc4713ea20c41618324548e53080173888849"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_300.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_300.pth",
+      "bytes": 14774027,
+      "sha256": "8f429350662194450fcebdfbbc4bdb68bd6647c0f4a9e801f4d59eaabb564991"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_300_final.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_300_final.pth",
+      "bytes": 14774805,
+      "sha256": "c06178de301789006fa16566de901b4108a78911c05bbe48436985137b8d6a1a"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_32.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_32.pth",
+      "bytes": 14773908,
+      "sha256": "2bf696e490ec8daa07e29581ae42efbabb43b44abbff38c044c6f7b2529fffd3"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_34.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_34.pth",
+      "bytes": 14773908,
+      "sha256": "be19a93ab4d0f15bc24a262c33b04e2210f86e5dc38102de20b68faf6464f9c5"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_37.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_37.pth",
+      "bytes": 14773908,
+      "sha256": "bf7b3e5fe7517ecea0394d57dfe80e4208cecf34a871a1b5cefd3cb54edea2e9"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_4.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_4.pth",
+      "bytes": 14773213,
+      "sha256": "787f53818bc0cea7bfa1088c9cd60d60e18cac9ef6914404069c002f050517ec"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_40.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_40.pth",
+      "bytes": 14773908,
+      "sha256": "131c041c884b1a85c38be9fdefa36a3cec274685de5696b00cc65d4fcde835b5"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_46.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_46.pth",
+      "bytes": 14773908,
+      "sha256": "d2c84d5d20d53b7e281885e2a4b619e83330d85e96782107a32620c7dbef8384"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_5.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_5.pth",
+      "bytes": 14773213,
+      "sha256": "19380ffc26d3ee3d6d8e270d46961d0982401ddfc94582097de0d3ee95df2e7c"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_54.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_54.pth",
+      "bytes": 14773908,
+      "sha256": "446eca71615224bf782cb8cec6ab38925d60fc2f929e3e8a9320313c23f2d04e"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_57.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_57.pth",
+      "bytes": 14773908,
+      "sha256": "ee9cea4989329cd604e8e32a065e7fb168927ef1bf1453fbcf7460d57046a7ff"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_6.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_6.pth",
+      "bytes": 14773213,
+      "sha256": "10451d542ce0787612f8969998117044dc183fdaa9a3b8659acb5bc6afe8ba57"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_65.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_65.pth",
+      "bytes": 14773908,
+      "sha256": "7ca9ebc178b2134b6e07cc88c74d8100afb42439b401969b53dac26975258b3a"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_7.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_7.pth",
+      "bytes": 14773213,
+      "sha256": "79469a7b2dffecbf8f95a4493d581374485de403048a208a659bdd01df418859"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_8.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_8.pth",
+      "bytes": 14773213,
+      "sha256": "b8c9b3a153e0466cf2af172c3ba2d1cbd53cb089e0270ffea5ba37c5ff584050"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_84.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_84.pth",
+      "bytes": 14773908,
+      "sha256": "2d29213c52d0713e5658d9bd0597665892916bdf486695632cf07a4e59aaad62"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_9.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_9.pth",
+      "bytes": 14773213,
+      "sha256": "66d75cb0cf1d04a6e26430805abaca9953679562508fceb0add8ebfcb2b3fd22"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_94.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps16 mr0.1/epoch_94.pth",
+      "bytes": 14773908,
+      "sha256": "36364fe5496bff3f177af2a32ef22bae4ad5a31d82138cb575201bc924065172"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps2/epoch_500.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps2/epoch_500.pth",
+      "bytes": 16178554,
+      "sha256": "6bc73427d977b1050fbd82d48ddfbd49bcd531829dd50dba17872ab1623fa5b3"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps2 mr0.1/epoch_500.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps2 mr0.1/epoch_500.pth",
+      "bytes": 16178955,
+      "sha256": "e9d77ad94be777bbfd44a443ff4472c011c760d4536307b37c4baf374b8374b4"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps2 mr0.1/epoch_500_final.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps2 mr0.1/epoch_500_final.pth",
+      "bytes": 45265763,
+      "sha256": "7784ba79aee4323cc2f240b0bb276c47a312a8bad72b511046056c50359d40ad"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps2 mr0.1/epoch_500_full.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps2 mr0.1/epoch_500_full.pth",
+      "bytes": 45265311,
+      "sha256": "45ce2627176c68d15ca4b83a22366e83077548f68042a11620496b688e059ad7"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps32/epoch_1000_final.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps32/epoch_1000_final.pth",
+      "bytes": 14705356,
+      "sha256": "8608d42e9ecd59a19c0b3582d954cf92805ec43ee51316d2f08857d305521d75"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps32 mr0.1/epoch_400.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps32 mr0.1/epoch_400.pth",
+      "bytes": 14704459,
+      "sha256": "9802f31e235d581251ba3d2785eb8b8876f0a66070526e9c6bab34f2cc5c1e57"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps32 mr0.1/epoch_500.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps32 mr0.1/epoch_500.pth",
+      "bytes": 14704459,
+      "sha256": "a933922707211718a66162f00ab4091958b061d0af3a763bbef66d43f810b0e4"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps32 mr0.1/epoch_500_final.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps32 mr0.1/epoch_500_final.pth",
+      "bytes": 14705237,
+      "sha256": "3617d1ab697d90c98b86e513ae48959a612eed3903550e1f3ea20f6f82b34f3f"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps4/epoch_1000_final.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps4/epoch_1000_final.pth",
+      "bytes": 15364684,
+      "sha256": "3fcfcc69a7d48304ae334cb1466309ae6323185201c9a8eb26dad288352ef888"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps4 mr0.1/epoch_500.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps4 mr0.1/epoch_500.pth",
+      "bytes": 15363851,
+      "sha256": "7a3415602aca72011b98cc63850c84ab05221607c4b76b1bb4396d58bdf249cf"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps4 mr0.1/epoch_500_final.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps4 mr0.1/epoch_500_final.pth",
+      "bytes": 44458851,
+      "sha256": "c9a2915a9f82ca49f4bb9375445f2e4eeb3e0f7f1a93269758c125b2bac61959"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps4 mr0.1/epoch_500_full.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps4 mr0.1/epoch_500_full.pth",
+      "bytes": 44458399,
+      "sha256": "eb12b3c549dfdda1c4b65574093b7d8e162d5b10cee8ab01be2051a6e5a2721b"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps64/epoch_1000_final.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps64/epoch_1000_final.pth",
+      "bytes": 14719820,
+      "sha256": "c2b96cb33c00945882842b4962ec4070e97665f2ed43ffaa3801f18d42ea9a38"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps64 mr0.1/epoch_395.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps64 mr0.1/epoch_395.pth",
+      "bytes": 14718923,
+      "sha256": "448ec50a5f739d6c0c39413eadee5886f55d2f3b88861b292b62b49e0403269a"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps64 mr0.1/epoch_400.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps64 mr0.1/epoch_400.pth",
+      "bytes": 14718923,
+      "sha256": "e5609e26b854a7d3867d726188c642f45ee523eb8e915b8891f0793f568d58e9"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps64 mr0.1/epoch_500.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps64 mr0.1/epoch_500.pth",
+      "bytes": 14718923,
+      "sha256": "69f5ae77df858f1c374f9e3fce6036bc50dc722181a5ffc1afdf0d046a7b7b7f"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps64 mr0.1/epoch_500_final.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps64 mr0.1/epoch_500_final.pth",
+      "bytes": 14719701,
+      "sha256": "89c1bfc4c1109c4df60d815c3f4f884034d9fbf8a792459083e924645456d264"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps8/epoch_1000_final.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps8/epoch_1000_final.pth",
+      "bytes": 14963276,
+      "sha256": "32aa43177bbe53723a9cd390c3a5b6391f964266940f40368d02c04d028005cf"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps8 mr0.1/epoch_200.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps8 mr0.1/epoch_200.pth",
+      "bytes": 14962379,
+      "sha256": "87b893b3ac353a2e65bfa5543b1e7997d0895aef3afcd8dd59390e7b5ff208ad"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps8 mr0.1/epoch_300.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps8 mr0.1/epoch_300.pth",
+      "bytes": 14962379,
+      "sha256": "037870616211bc0ee33c9db2033efe2f8c96b0e96ebf3fb2d06d12b8e5504d15"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps8 mr0.1/epoch_400.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps8 mr0.1/epoch_400.pth",
+      "bytes": 14962379,
+      "sha256": "c4bd7b36189b1d3f48500ada2057ef4f11261a0f8a181dfbed5841ca8ab4d66b"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps8 mr0.1/epoch_500.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps8 mr0.1/epoch_500.pth",
+      "bytes": 14962379,
+      "sha256": "5f2074973db198dd1ea63adc700f90410e41f9feb966478daafc6d213748ae96"
+    },
+    {
+      "source": "experiments/smae with train.h5 ss1600 ps8 mr0.1/epoch_500_final.pth",
+      "path": "outputs/experiments/smae with train.h5 ss1600 ps8 mr0.1/epoch_500_final.pth",
+      "bytes": 14963157,
+      "sha256": "9a84d3c9ed06af1b3fab68c03e8ceffe8ab500dd3f234c6ed9ed1d73392971c8"
+    },
+    {
+      "source": "experiments/smae_raw/epoch_500_final.pth",
+      "path": "outputs/experiments/smae_raw/epoch_500_final.pth",
+      "bytes": 14762360,
+      "sha256": "a5e558fb9279be832db034ab0293638492fc4f36d59d77752286be559016d616"
+    },
+    {
+      "source": "logs/experiments/smae with duotai ss2048 ps16/events.out.tfevents.1776781079.node3.363835.0",
+      "path": "outputs/logs/experiments/smae with duotai ss2048 ps16/events.out.tfevents.1776781079.node3.363835.0",
+      "bytes": 100834,
+      "sha256": "923261cf5094dc73f636d89d2a27a4f9713decf3bf531cfea3a211a33c27faaa"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps1/events.out.tfevents.1775807730.node7.734218.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps1/events.out.tfevents.1775807730.node7.734218.0",
+      "bytes": 30134,
+      "sha256": "d0fb9c9bc040737fdedeb055d1a0e4dcd540e41a3fd56d7c56c42852613e0589"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps1 mr0.1/events.out.tfevents.1778499884.node5.204898.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps1 mr0.1/events.out.tfevents.1778499884.node5.204898.0",
+      "bytes": 88,
+      "sha256": "d1efd73899876dda8b869faf89ac661c55c94e988b700c84386c8a7febe9bf26"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps1 mr0.1/events.out.tfevents.1778499959.node5.205223.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps1 mr0.1/events.out.tfevents.1778499959.node5.205223.0",
+      "bytes": 88,
+      "sha256": "6f3ed43f525f827f0fa7cf32326a63c285c6592422d0d060c55a07d394547905"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps1 mr0.1/events.out.tfevents.1778856715.node5.678811.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps1 mr0.1/events.out.tfevents.1778856715.node5.678811.0",
+      "bytes": 45587,
+      "sha256": "bed408524e44bd54efcce2c90a00a229c90d4b1fb4188868dc036a711a8e62c6"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps100 mr0.1/events.out.tfevents.1775807612.node5.180934.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps100 mr0.1/events.out.tfevents.1775807612.node5.180934.0",
+      "bytes": 100834,
+      "sha256": "2e55b6aaa1a5069ccaf9039ce422c5b1b99a10abcd32098b05b88bdb4b925148"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps16/events.out.tfevents.1775560364.node7.8371.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps16/events.out.tfevents.1775560364.node7.8371.0",
+      "bytes": 100834,
+      "sha256": "bc70e6b302c98b0fc1b0c1784e202e397e640329461b700ab1287a30c99b3c5c"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps16 mr0.1/events.out.tfevents.1778501312.node3.168436.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps16 mr0.1/events.out.tfevents.1778501312.node3.168436.0",
+      "bytes": 3652,
+      "sha256": "67bc5ad55589f781404e7a57f68d9a6ccb2ac7ed9a7597bc37b7937bc95da1a1"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps16 mr0.1/events.out.tfevents.1778554132.node3.173339.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps16 mr0.1/events.out.tfevents.1778554132.node3.173339.0",
+      "bytes": 88,
+      "sha256": "147e847f990f83867cc04c49f5bd60a7f6f864699b653aa849059a87f6c7385c"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps16 mr0.1/events.out.tfevents.1778554305.node3.173833.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps16 mr0.1/events.out.tfevents.1778554305.node3.173833.0",
+      "bytes": 30134,
+      "sha256": "f1b3a56c4e5b341f9920f0de871001dd97ac3328e667d8cfabaa61c55a5802a8"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps2 mr0.1/events.out.tfevents.1778638257.node3.342862.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps2 mr0.1/events.out.tfevents.1778638257.node3.342862.0",
+      "bytes": 88,
+      "sha256": "b82ef3e4cf14a81478211b54d7244e86c433ce84d7d9774d1758f85c9314b362"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps2 mr0.1/events.out.tfevents.1778639779.node3.343096.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps2 mr0.1/events.out.tfevents.1778639779.node3.343096.0",
+      "bytes": 1969,
+      "sha256": "e141b90cc419fc8261d5998b7260f9c483e5f35e46139710d3580191c049c701"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps2 mr0.1/events.out.tfevents.1778874549.node3.719356.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps2 mr0.1/events.out.tfevents.1778874549.node3.719356.0",
+      "bytes": 50334,
+      "sha256": "57dafc5515b7cc2424148b56c434a11250aaa0f5064474a266d0686c2b8f4d88"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps32/events.out.tfevents.1775560382.node7.8409.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps32/events.out.tfevents.1775560382.node7.8409.0",
+      "bytes": 100834,
+      "sha256": "b46858a3d8e2c68d31bd4e7338c4c4c7634e00547d60753431c289a78ec1a170"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps32 mr0.1/events.out.tfevents.1778501118.node5.205846.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps32 mr0.1/events.out.tfevents.1778501118.node5.205846.0",
+      "bytes": 19024,
+      "sha256": "9076d0868385b3f0943b16085751c24c386b55021c142ebe35750a36da9367ad"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps32 mr0.1/events.out.tfevents.1778554515.node5.218221.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps32 mr0.1/events.out.tfevents.1778554515.node5.218221.0",
+      "bytes": 50334,
+      "sha256": "2681095d39cbb12c5d27fc3cf1e59858ffa92ef102d429b07d430985674af47b"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps4/events.out.tfevents.1775560722.node4.7612.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps4/events.out.tfevents.1775560722.node4.7612.0",
+      "bytes": 100834,
+      "sha256": "8b362bf91a1b6f4495b996f49536e13c72d5d639009a0e16d365f7caffdf15e7"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps4 mr0.1/events.out.tfevents.1778637558.node7.206985.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps4 mr0.1/events.out.tfevents.1778637558.node7.206985.0",
+      "bytes": 88,
+      "sha256": "5208d1c30fde7e26aea80491bb9a48c0015065990f7251b865f0ae3178b2ac53"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps4 mr0.1/events.out.tfevents.1778637683.node7.207117.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps4 mr0.1/events.out.tfevents.1778637683.node7.207117.0",
+      "bytes": 88,
+      "sha256": "7d0ed37e19d350e38c73f6c6a5be7bb8c1fc1d92d4a0dc5e73dc7b39fac08791"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps4 mr0.1/events.out.tfevents.1778637844.node7.207247.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps4 mr0.1/events.out.tfevents.1778637844.node7.207247.0",
+      "bytes": 7810,
+      "sha256": "c389bd80571719521928074374a6981d5a9d855fe4bbccaf38b8a131744a2428"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps4 mr0.1/events.out.tfevents.1778875294.node7.571456.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps4 mr0.1/events.out.tfevents.1778875294.node7.571456.0",
+      "bytes": 50334,
+      "sha256": "dd85ad0b22967fac3421d080c4f62f5fdb3307142e711508d09a515c3bb5f670"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps4 mr0.1 debug/events.out.tfevents.1778874984.node7.571287.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps4 mr0.1 debug/events.out.tfevents.1778874984.node7.571287.0",
+      "bytes": 187,
+      "sha256": "4f083cd83b44ac635827fcec3a5effa2ba9d1a3a2863a39ff3055321876f8a17"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps64/events.out.tfevents.1775560519.node7.8952.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps64/events.out.tfevents.1775560519.node7.8952.0",
+      "bytes": 100834,
+      "sha256": "d78ecc1eaae46d08723eee119671201b245f266567a718d7bd25fc9ea45e64cd"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps64 mr0.1/events.out.tfevents.1778500124.node5.205521.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps64 mr0.1/events.out.tfevents.1778500124.node5.205521.0",
+      "bytes": 88,
+      "sha256": "4b0cc8226c4d3bd2e7f00dad82be465d86b8c9c54cfbc95805b7f58bc9b8f726"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps64 mr0.1/events.out.tfevents.1778500285.node7.20371.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps64 mr0.1/events.out.tfevents.1778500285.node7.20371.0",
+      "bytes": 88,
+      "sha256": "3aa236817f8084ceac5b850a5b095fb03c0d3a3970bdccc5023f15b9347c34dd"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps64 mr0.1/events.out.tfevents.1778500822.node7.20717.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps64 mr0.1/events.out.tfevents.1778500822.node7.20717.0",
+      "bytes": 88,
+      "sha256": "f68b7bf8f15afb1bb6487b57b5b10a907ddeb3577b5d725f5a51920455109b45"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps64 mr0.1/events.out.tfevents.1778501035.node7.21044.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps64 mr0.1/events.out.tfevents.1778501035.node7.21044.0",
+      "bytes": 18620,
+      "sha256": "07cd5d0e9f28943319ca9361236078d42cd9e3ea69270a9c09b7ee888382255e"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps64 mr0.1/events.out.tfevents.1778554400.node7.32791.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps64 mr0.1/events.out.tfevents.1778554400.node7.32791.0",
+      "bytes": 50334,
+      "sha256": "fb88ed1aed6446ea5cfe38639b7642b42929f16242f3bd10c9496257348f6a60"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps8/events.out.tfevents.1775559849.node7.7949.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps8/events.out.tfevents.1775559849.node7.7949.0",
+      "bytes": 88,
+      "sha256": "a9456a466239ee16da6ba7fb216c9f8bda1d33ee775d11383a4740e43893e8e9"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps8/events.out.tfevents.1775559962.node7.8063.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps8/events.out.tfevents.1775559962.node7.8063.0",
+      "bytes": 187,
+      "sha256": "9803faacdc970bc47ce478917b305cfb28abca6c0ee0de7f6a97273aeec252a2"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps8/events.out.tfevents.1775560287.node7.8266.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps8/events.out.tfevents.1775560287.node7.8266.0",
+      "bytes": 100834,
+      "sha256": "0a64553e0bab618c1bb28b67703fccbdc45b7ec0e729b67fd5238075766c98e2"
+    },
+    {
+      "source": "logs/experiments/smae with train.h5 ss1600 ps8 mr0.1/events.out.tfevents.1778637404.node5.394992.0",
+      "path": "outputs/logs/experiments/smae with train.h5 ss1600 ps8 mr0.1/events.out.tfevents.1778637404.node5.394992.0",
+      "bytes": 50334,
+      "sha256": "8819bb53679485c8abd68d47babfc00ea65425fb6332fa58440d5694ff16f0ea"
+    },
+    {
+      "source": "Pretrain_weight_moria/epoch_500_final.pth",
+      "path": "outputs/pretrained/epoch_500_final.pth",
+      "bytes": 14762360,
+      "sha256": "14689c97f2d0f0f7aa87a5c97882299231d7a943a5f8da0d5f22dedc54f6f26e"
+    }
+  ]
+}

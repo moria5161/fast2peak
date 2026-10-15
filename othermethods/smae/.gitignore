@@ -1,0 +1,11 @@
+# Local assets and execution artifacts.
+/datasets/
+/scripts/
+/outputs/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+*.pt
+*.pth
+*.ckpt
+events.out.tfevents.*

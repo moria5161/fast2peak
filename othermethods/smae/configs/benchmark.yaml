@@ -1,0 +1,27 @@
+# Matched training/evaluation defaults for the adapted patch-4 model.
+# Historical checkpoints and logs under outputs/experiments remain unchanged.
+# YAML paths are relative to othermethods/smae; CLI paths use the current directory.
+train:
+  data_path: ../../datasets/train/train.h5
+  model: spectraMAE_ss1600_ps4_dim256_h8
+  device: cuda:0
+  epoch: 500
+  batch_size: 64
+  lr: 0.0001
+  wd: 0.00001
+  mask_ratio: 0.1
+  patience: 800
+  seed: 615
+  num_workers: 1
+  save_path: outputs/retrained/ss1600_ps4_mask01
+  log_dir: outputs/logs/retrained/ss1600_ps4_mask01
+
+evaluate:
+  input_path: ../../datasets/test/Simu.h5
+  chkpt_dir: outputs/retrained/ss1600_ps4_mask01/last.pth
+  output_dir: outputs/evaluation/ss1600_ps4_mask01
+  arch: null  # Infer from the checkpoint's saved training configuration.
+  device: cuda:0
+  batch_size: 24
+  seed: 615
+  mask_ratio: null  # Infer from the checkpoint; old bare weights require an explicit value.

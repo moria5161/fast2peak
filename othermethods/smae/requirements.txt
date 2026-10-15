@@ -1,0 +1,12 @@
+# Install a PyTorch/torchvision build appropriate for the target machine.
+torch
+torchvision
+numpy
+scipy
+h5py
+einops
+timm
+scikit-learn
+tqdm
+tensorboard
+PyYAML
