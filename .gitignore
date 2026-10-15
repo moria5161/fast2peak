@@ -4,6 +4,7 @@ _pycache_*.pyc
 *.py[cod]
 *.class
 .vscode/
+.idea/
 .claude/
 .ipynb_checkpoints/
 .pytest_cache/
