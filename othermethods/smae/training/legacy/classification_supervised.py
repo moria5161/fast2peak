@@ -11,7 +11,7 @@ from othermethods.smae.utils.Engine import Engine, EarlyStop
 def get_args_parser():
     parser = argparse.ArgumentParser('Raman ViT supervise Pretraining', add_help=False)
 
-    parser.add_argument('--data_path', default='/home/RenPengju/codes/Raman_spectra/Dataset/bacteria_ID', type=str)
+    parser.add_argument('--data_path', default='othermethods/smae/datasets/bacteria_ID', type=str)
     parser.add_argument('--dataset', default='finetune', type=str)
     parser.add_argument('--device', default='cuda:1', type=str)
     parser.add_argument('--epoch', default=200, type=int)

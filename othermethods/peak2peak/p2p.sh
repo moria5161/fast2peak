@@ -3,17 +3,17 @@
 #SBATCH --output=slurm_%j.out
 #SBATCH --error=slurm_%j.err
 #SBATCH --nodes=1
-#SBATCH --nodelist=node4
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
 #SBATCH --gres=gpu:1
 #SBATCH --mem=32G
 
 
-cd /home/slurmusers/moria/codes/fast2peak_v2
+# Submit with sbatch from the repository root.
+cd "${SLURM_SUBMIT_DIR:-$(dirname "$0")/../..}" || exit 1
 
 
-# python p2p.py \
+# python othermethods/peak2peak/p2p.py \
 #     --data_dir "datasets/boundary" \
 #     --data_savedir "experiments/eval p2p wd2" \
 #     --epochs 20 \
@@ -29,5 +29,5 @@ cd /home/slurmusers/moria/codes/fast2peak_v2
 #     --kernel_size 7
 
 
-# P2P 原始
-python p2p_raw.py --input_dir "datasets/test" --output_dir "experiments/p2p_raw"
+# Original P2P.
+python othermethods/peak2peak/p2p_raw.py --input_dir "datasets/test" --output_dir "experiments/p2p_raw"

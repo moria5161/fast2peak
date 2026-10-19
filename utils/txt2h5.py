@@ -2,6 +2,7 @@ import os
 import h5py
 import numpy as np
 import argparse
+from pathlib import Path
 
 # ==========================================
 # Extract spectra and combine files.
@@ -106,10 +107,11 @@ def decode_h5_to_txt(h5_path, output_dir, data_key='denoised'):
 
 if __name__ == "__main__":
     # Paths.
-    RAW_DIR = '/home/slurmusers/moria/codes/fast2peak_v2/datasets/anjisuan'
-    TEMP_DIR = '/home/slurmusers/moria/codes/fast2peak_v2/datasets/anjisuan2'
-    H5_FILE = '/home/slurmusers/moria/codes/fast2peak_v2/smae/experiments/smae with duotai ss2048 ps16/duotai.h5'
-    DECODE_DIR = '/home/slurmusers/moria/codes/fast2peak_v2/datasets/smae_duotai_results'
+    ROOT = Path(__file__).resolve().parents[1]
+    RAW_DIR = ROOT / 'datasets/anjisuan'
+    TEMP_DIR = ROOT / 'datasets/anjisuan2'
+    H5_FILE = ROOT / 'smae/experiments/smae with duotai ss2048 ps16/duotai.h5'
+    DECODE_DIR = ROOT / 'datasets/smae_duotai_results'
 
     # 1. Convert raw TXT files to H5.
     # process_and_combine(RAW_DIR, TEMP_DIR, H5_FILE)

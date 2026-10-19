@@ -8,7 +8,7 @@ The seven local core files previously in `denoising/SMAE_denoising/` were compar
 
 `ViT_1D.py`, `DenoisingData.py` and `Engine.py` matched after line-ending normalization. The model and three entry scripts matched after normalizing import prefixes and trailing whitespace. This comparison did not establish that the exploratory notebooks were unmodified.
 
-These seven files are retained across `models/upstream/`, `utils/upstream/`, `training/upstream/` and `inference/upstream/`. Only package imports were rewritten during this reorganization; their numerical implementation and historical control flow were not repaired or merged with the adapted branch.
+These seven files are retained across `models/upstream/`, `utils/upstream/`, `training/upstream/` and `inference/upstream/`. Package imports were rewritten during reorganization. Publication cleanup also replaced the author's absolute data path in three commented-out argument examples with a repository-relative example. Their numerical implementation and historical control flow were not repaired or merged with the adapted branch. The adapted legacy classification entry points now default to `othermethods/smae/datasets/bacteria_ID`, relative to the repository root, instead of the author's home directory.
 
 The original sources contain API inconsistencies: the denoising model requires a `truespectra` argument, whereas some pretraining/evaluation calls omit it. They also retain original relative data paths and legacy NumPy aliases. Consequently, these entry scripts are provenance/reference sources, not validated drop-in commands for the adapted checkpoints. Use the unified adapted entry point for the documented current workflow.
 
