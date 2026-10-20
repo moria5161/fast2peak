@@ -27,7 +27,7 @@ CONFIG = {
     },
     'system': {
         'num_cores': 24,            # Number of worker processes.
-        'save_dir': 'datasets/simu'
+        'save_dir': 'datasets/synthetic/generated'
     }
 }
 

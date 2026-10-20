@@ -14,7 +14,7 @@ cd "${SLURM_SUBMIT_DIR:-$(dirname "$0")/../..}" || exit 1
 
 
 # python othermethods/peak2peak/p2p.py \
-#     --data_dir "datasets/boundary" \
+#     --data_dir "datasets/synthetic/low_snr" \
 #     --data_savedir "experiments/eval p2p wd2" \
 #     --epochs 20 \
 #     --lr 1e-4 \
