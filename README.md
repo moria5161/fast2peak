@@ -10,7 +10,7 @@ Improving the temporal and spatial resolution of spectroscopy inevitably reduces
 
 ## Datasets and Checkpoints
 
-Datasets, model configurations and pretrained weights will be released through [Moria5161 on Hugging Face](https://huggingface.co/datasets/Moria5161).
+Datasets, model configurations and pretrained weights will be released through [moria5161 on Hugging Face](https://huggingface.co/moria5161).
 
 **Release status: pending upload.** The resources are not yet available. Direct dataset/checkpoint links and placement instructions will be added when the release is ready. Keep each checkpoint together with its accompanying `config.yaml`, which the inference entry point uses to restore the model configuration.
 
