@@ -23,6 +23,8 @@ experiments/*
 logs/*
 
 notebooks/*
+!notebooks/paper_figures.ipynb
+!notebooks/paper_figures_data/
 scripts/*
 smae/*
 otherbench/*/datasets/

@@ -1,0 +1,936 @@
+{
+  "description": "Only spectra read by plot_paper.ipynb. Metrics remain inline in plotting cells.",
+  "indexing": "HDF5 row indices are zero-based; source paths are provenance only and are not runtime dependencies.",
+  "files": [
+    {
+      "file": "simulated_denoising/Demo_GT.txt",
+      "source": "notebooks/simulated_denoising/Demo_GT.txt",
+      "sha256": "dbac4d922af08d5202709773a6cc8faef43d8b48a0fb0fb1cfb579c024be396b"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR4.0.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR4.0.txt",
+      "sha256": "68cb90eeee70201252b3fac1f22424b0239f5862a5281db5c0022802bfcb9a70"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR4.0_SG.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR4.0_SG.txt",
+      "sha256": "ab0cf2a4f3f255bf5ba7ad8f2a0faff0249eb5b9f847738a07c86ff818b672c3"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR4.0_WTD.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR4.0_WTD.txt",
+      "sha256": "0b0d79dfa20aa25e36f3a9ba9ed386ab184191b053aa6b80ac635e8160583d65"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR4.0_PEER.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR4.0_PEER.txt",
+      "sha256": "cf834d52387fca09a2a613fcea048f24eccd2c5fa7ae8aeef6444bc737ca0017"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR4.0_ResUNet.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR4.0_ResUNet.txt",
+      "sha256": "959c5fc724a5aa279792d5faa288c5041db632eb887730ec3e481ad943c99354"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR4.0_P2P.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR4.0_P2P.txt",
+      "sha256": "260a320e08c904e849595c9bc87f4470de625e344a58ccc11ec1f599848ab42c"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR4.0_SMAE.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR4.0_SMAE.txt",
+      "sha256": "dedb762d865c51fb7a286c799fc15d807e11327118c9ca17ef20095f2e7e3401"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR4.0_F2P.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR4.0_F2P.txt",
+      "sha256": "af000258299271273c036787ef5b1cfd4b2c132d2f24d599e5dae86b3187ff7a"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR2.5.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR2.5.txt",
+      "sha256": "0a400c61829c5d52bc513c09d6ea83b689d81e68353db1dca466f35d918ebcf3"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR2.5_SG.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR2.5_SG.txt",
+      "sha256": "9fae3de48e890cfadc08c59b865a28f4310719d85d817c193ac7f9ed52024ab8"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR2.5_WTD.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR2.5_WTD.txt",
+      "sha256": "079c4ddc4b5756caf56bdba2afef7690c531774344d0c4d4381571109177e8f8"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR2.5_PEER.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR2.5_PEER.txt",
+      "sha256": "a1fef467a974fa3675ce74a7bf1ceef2a250e24c4fc8f54f378c79423425396c"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR2.5_ResUNet.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR2.5_ResUNet.txt",
+      "sha256": "f5971c406d3abd7052e5bb375534bc17dd0f565f970e6494d07cd9517b09a49f"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR2.5_P2P.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR2.5_P2P.txt",
+      "sha256": "331108e8e59bf5c69a89ab299d745a16ee210916e402564bde6ddd928ab77543"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR2.5_SMAE.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR2.5_SMAE.txt",
+      "sha256": "137e86c9e06c80e1a5885639a518e968c4a2ba35083bd388342b1417ea22dd78"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR2.5_F2P.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR2.5_F2P.txt",
+      "sha256": "149e329412ac16cb514fc35cdbae228301c0d2c054683aa08cd41b1e8ffe6915"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR1.5.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR1.5.txt",
+      "sha256": "4eabc296ba7aed3512a796b89aaf3ba392a3c0f4fcceee0f4cc9df3e25343a73"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR1.5_SG.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR1.5_SG.txt",
+      "sha256": "f4270c0f9787bde1275261dd4ed3fc13deb5fcbb5b1118a4ca3d03e2ef12405f"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR1.5_WTD.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR1.5_WTD.txt",
+      "sha256": "8238cf889da2db1b4c1c6cf365caeda2d935dc89cfb1722e1ed4579d993c29f1"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR1.5_PEER.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR1.5_PEER.txt",
+      "sha256": "69a1581912c3d596a67f488d35e21b0fe693f7263c52d30182bb74a100bb743e"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR1.5_ResUNet.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR1.5_ResUNet.txt",
+      "sha256": "3dea1b1cbe901c08d0fab0cf13ce329e06b35a6f8c6965f4753251e9c7ac94a2"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR1.5_P2P.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR1.5_P2P.txt",
+      "sha256": "657f6a2f192af4ca08dd28a171034e145221564bccdfae7bc62a8661d2049519"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR1.5_SMAE.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR1.5_SMAE.txt",
+      "sha256": "12a1e113ef896b57acad5283aa91919ea3bb8004249e7b6623b552479cd3d28d"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR1.5_F2P.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR1.5_F2P.txt",
+      "sha256": "fe083af8afaea89325438a4019dc4a946ae21b1803760458a0039c1d6e7dc411"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR1.3.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR1.3.txt",
+      "sha256": "d4cd035c6ca5386028a79e744f4f0f4074d4689f3f461d40cb2fd98efc2bba14"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR1.3_SG.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR1.3_SG.txt",
+      "sha256": "6d37a7792a02d5d9a591c0315773fa9571c68a74ec41af299ce8442a9338cc55"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR1.3_WTD.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR1.3_WTD.txt",
+      "sha256": "13941cbd6491b810601a49cf1ed2ec0393ca5014abe81e0069c5765717971813"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR1.3_PEER.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR1.3_PEER.txt",
+      "sha256": "8d05801cc2c98d1bc46bfba3c5cf6441e02f75b562679d7461d1d56f0ff16a7e"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR1.3_ResUNet.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR1.3_ResUNet.txt",
+      "sha256": "35606bae8d6945a6a2908e1e8f0cf56b23704ef4639b32a12c399aed44b5533f"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR1.3_P2P.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR1.3_P2P.txt",
+      "sha256": "3d67de7110604db497635c7991010c5ed01dd45de12d605be13a5025342fdcd3"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR1.3_SMAE.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR1.3_SMAE.txt",
+      "sha256": "97708b61a47430f420be5b7844c4ef8548a5328119e3337002c5fc88d370b175"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR1.3_F2P.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR1.3_F2P.txt",
+      "sha256": "deb25869b386dfe3b4538a115f7f43803b8097b62e67fd6d01551438649bafc4"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR1.0.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR1.0.txt",
+      "sha256": "a61675b6bc595650de00b87744b128611be6475039a2b672de940f17ad912125"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR1.0_SG.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR1.0_SG.txt",
+      "sha256": "38fb3850af78a958d75b039c596adbcfb709d83886323a48277ef46800f5ac35"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR1.0_WTD.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR1.0_WTD.txt",
+      "sha256": "92000b8f8a03a1afc8ef867583fe4f8027fda364d126cfcd7dd9a4bdacdc5ff4"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR1.0_PEER.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR1.0_PEER.txt",
+      "sha256": "5b43863918d9d3c129756e8ca8639e497a9d191b31ffee4306f57ac70420e69a"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR1.0_ResUNet.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR1.0_ResUNet.txt",
+      "sha256": "32bc61d415da9921389b8c5107400f41f09b0e25d38da4c817fedcb170802efa"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR1.0_P2P.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR1.0_P2P.txt",
+      "sha256": "a7b31a9a0c03a2f5c55fb0891fa7e930675ad307698c16a0a1fc401c3bb812f7"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR1.0_SMAE.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR1.0_SMAE.txt",
+      "sha256": "328aa2cabd5108032894d2df90d90e665377cddb6557df42318aa3835557a9f9"
+    },
+    {
+      "file": "simulated_denoising/Demo_SNR1.0_F2P.txt",
+      "source": "notebooks/simulated_denoising/Demo_SNR1.0_F2P.txt",
+      "sha256": "1b2609c92408c1b44e0292363c8fa06695d7e518d6ce295d4b4a0a6fa4ad18d4"
+    },
+    {
+      "file": "simulated_reference_spectra/Demo_GT.txt",
+      "source": "notebooks/simulated_reference_spectra/Demo_GT.txt",
+      "sha256": "dbac4d922af08d5202709773a6cc8faef43d8b48a0fb0fb1cfb579c024be396b"
+    },
+    {
+      "file": "simulated_reference_spectra/Demo_SNR4.0.txt",
+      "source": "notebooks/simulated_reference_spectra/Demo_SNR4.0.txt",
+      "sha256": "68cb90eeee70201252b3fac1f22424b0239f5862a5281db5c0022802bfcb9a70"
+    },
+    {
+      "file": "simulated_reference_spectra/Demo_SNR2.5.txt",
+      "source": "notebooks/simulated_reference_spectra/Demo_SNR2.5.txt",
+      "sha256": "0a400c61829c5d52bc513c09d6ea83b689d81e68353db1dca466f35d918ebcf3"
+    },
+    {
+      "file": "simulated_reference_spectra/Demo_SNR1.5.txt",
+      "source": "notebooks/simulated_reference_spectra/Demo_SNR1.5.txt",
+      "sha256": "4eabc296ba7aed3512a796b89aaf3ba392a3c0f4fcceee0f4cc9df3e25343a73"
+    },
+    {
+      "file": "masking_ablation_spectra/Demo_SNR4.0_F2P.txt",
+      "source": "notebooks/masking_ablation_spectra/Demo_SNR4.0_F2P.txt",
+      "sha256": "af000258299271273c036787ef5b1cfd4b2c132d2f24d599e5dae86b3187ff7a"
+    },
+    {
+      "file": "masking_ablation_spectra/Demo_SNR4.0_mr0.0.txt",
+      "source": "notebooks/masking_ablation_spectra/Demo_SNR4.0_mr0.0.txt",
+      "sha256": "edd10736813b1c3dbb57f8f7773c854a29f3c576886fc608f882c82b49229739"
+    },
+    {
+      "file": "masking_ablation_spectra/Demo_SNR2.5_F2P.txt",
+      "source": "notebooks/masking_ablation_spectra/Demo_SNR2.5_F2P.txt",
+      "sha256": "149e329412ac16cb514fc35cdbae228301c0d2c054683aa08cd41b1e8ffe6915"
+    },
+    {
+      "file": "masking_ablation_spectra/Demo_SNR2.5_mr0.0.txt",
+      "source": "notebooks/masking_ablation_spectra/Demo_SNR2.5_mr0.0.txt",
+      "sha256": "d55f4e2162c06fe9738224b8f3c5e06366566d4f3ae90f7c31fd4d2bb476b3c3"
+    },
+    {
+      "file": "masking_ablation_spectra/Demo_SNR1.5_F2P.txt",
+      "source": "notebooks/masking_ablation_spectra/Demo_SNR1.5_F2P.txt",
+      "sha256": "fe083af8afaea89325438a4019dc4a946ae21b1803760458a0039c1d6e7dc411"
+    },
+    {
+      "file": "masking_ablation_spectra/Demo_SNR1.5_mr0.0.txt",
+      "source": "notebooks/masking_ablation_spectra/Demo_SNR1.5_mr0.0.txt",
+      "sha256": "6cc0ea3ccee6790d98510658a1ecd91c5301c1ab2ac4efc20a3631ddf08dd528"
+    },
+    {
+      "file": "mask_vs_full/Demo_GT.txt",
+      "source": "notebooks/mask_vs_full/Demo_GT.txt",
+      "sha256": "dbac4d922af08d5202709773a6cc8faef43d8b48a0fb0fb1cfb579c024be396b"
+    },
+    {
+      "file": "mask_vs_full/Demo_SNR4.0.txt",
+      "source": "notebooks/mask_vs_full/Demo_SNR4.0.txt",
+      "sha256": "68cb90eeee70201252b3fac1f22424b0239f5862a5281db5c0022802bfcb9a70"
+    },
+    {
+      "file": "mask_vs_full/Demo_SNR4.0_mask.txt",
+      "source": "notebooks/mask_vs_full/Demo_SNR4.0_mask.txt",
+      "sha256": "af000258299271273c036787ef5b1cfd4b2c132d2f24d599e5dae86b3187ff7a"
+    },
+    {
+      "file": "mask_vs_full/Demo_SNR4.0_full.txt",
+      "source": "notebooks/mask_vs_full/Demo_SNR4.0_full.txt",
+      "sha256": "0f98adf0d53edeb663a691281636970a85c134a996503961578c1ccf6780c68a"
+    },
+    {
+      "file": "mask_vs_full/Demo_SNR2.5.txt",
+      "source": "notebooks/mask_vs_full/Demo_SNR2.5.txt",
+      "sha256": "0a400c61829c5d52bc513c09d6ea83b689d81e68353db1dca466f35d918ebcf3"
+    },
+    {
+      "file": "mask_vs_full/Demo_SNR2.5_mask.txt",
+      "source": "notebooks/mask_vs_full/Demo_SNR2.5_mask.txt",
+      "sha256": "149e329412ac16cb514fc35cdbae228301c0d2c054683aa08cd41b1e8ffe6915"
+    },
+    {
+      "file": "mask_vs_full/Demo_SNR2.5_full.txt",
+      "source": "notebooks/mask_vs_full/Demo_SNR2.5_full.txt",
+      "sha256": "9946421e05c91e6b36fad8e01d36a06aeec1e90205274ce889ada4c5fca83827"
+    },
+    {
+      "file": "mask_vs_full/Demo_SNR1.5.txt",
+      "source": "notebooks/mask_vs_full/Demo_SNR1.5.txt",
+      "sha256": "4eabc296ba7aed3512a796b89aaf3ba392a3c0f4fcceee0f4cc9df3e25343a73"
+    },
+    {
+      "file": "mask_vs_full/Demo_SNR1.5_mask.txt",
+      "source": "notebooks/mask_vs_full/Demo_SNR1.5_mask.txt",
+      "sha256": "fe083af8afaea89325438a4019dc4a946ae21b1803760458a0039c1d6e7dc411"
+    },
+    {
+      "file": "mask_vs_full/Demo_SNR1.5_full.txt",
+      "source": "notebooks/mask_vs_full/Demo_SNR1.5_full.txt",
+      "sha256": "5e9e1ca0c70636c2e3c41a1340e3353b26b75e115f0d9dc1ddf58e79d9cc1f17"
+    },
+    {
+      "file": "transformer_vs_cnn/Demo_SNR4.0_F2P.txt",
+      "source": "notebooks/transformer_vs_cnn/Demo_SNR4.0_F2P.txt",
+      "sha256": "af000258299271273c036787ef5b1cfd4b2c132d2f24d599e5dae86b3187ff7a"
+    },
+    {
+      "file": "transformer_vs_cnn/Demo_SNR4.0_ks7.txt",
+      "source": "notebooks/transformer_vs_cnn/Demo_SNR4.0_ks7.txt",
+      "sha256": "be36ce6806489d1d0480d4dcb5992d77b93864a0e95c37d07cc6fa26d481b89a"
+    },
+    {
+      "file": "transformer_vs_cnn/Demo_SNR4.0_ks11.txt",
+      "source": "notebooks/transformer_vs_cnn/Demo_SNR4.0_ks11.txt",
+      "sha256": "3b4d08ebd7bd85611331947497236454607d53ef694f73b64d65404c8235ee4a"
+    },
+    {
+      "file": "transformer_vs_cnn/Demo_SNR4.0_ks15.txt",
+      "source": "notebooks/transformer_vs_cnn/Demo_SNR4.0_ks15.txt",
+      "sha256": "7a035ce1f9f312ca329a87a82a05a4c5babc9b41a86eb21b3de31f727be7960d"
+    },
+    {
+      "file": "transformer_vs_cnn/Demo_SNR2.5_F2P.txt",
+      "source": "notebooks/transformer_vs_cnn/Demo_SNR2.5_F2P.txt",
+      "sha256": "149e329412ac16cb514fc35cdbae228301c0d2c054683aa08cd41b1e8ffe6915"
+    },
+    {
+      "file": "transformer_vs_cnn/Demo_SNR2.5_ks7.txt",
+      "source": "notebooks/transformer_vs_cnn/Demo_SNR2.5_ks7.txt",
+      "sha256": "9bc4d387ebacb188b0e0a64d4c5e3b8b747e8eaa7a8e424bc3e11803f111e870"
+    },
+    {
+      "file": "transformer_vs_cnn/Demo_SNR2.5_ks11.txt",
+      "source": "notebooks/transformer_vs_cnn/Demo_SNR2.5_ks11.txt",
+      "sha256": "b06aa8ddbe776f5b1a68e7c4bbc6738266faccdbf650eb12fb4ceaaa465f2f04"
+    },
+    {
+      "file": "transformer_vs_cnn/Demo_SNR2.5_ks15.txt",
+      "source": "notebooks/transformer_vs_cnn/Demo_SNR2.5_ks15.txt",
+      "sha256": "a28bfc84f93166c6002820ca2b1c4ce84ba0ef589ca5c15a4dab4098e7a23d32"
+    },
+    {
+      "file": "transformer_vs_cnn/Demo_SNR1.5_F2P.txt",
+      "source": "notebooks/transformer_vs_cnn/Demo_SNR1.5_F2P.txt",
+      "sha256": "fe083af8afaea89325438a4019dc4a946ae21b1803760458a0039c1d6e7dc411"
+    },
+    {
+      "file": "transformer_vs_cnn/Demo_SNR1.5_ks7.txt",
+      "source": "notebooks/transformer_vs_cnn/Demo_SNR1.5_ks7.txt",
+      "sha256": "a8119e48dfe483c6c137f590aef1b966be9e3a74b19a55eec877b62df3dc1ca3"
+    },
+    {
+      "file": "transformer_vs_cnn/Demo_SNR1.5_ks11.txt",
+      "source": "notebooks/transformer_vs_cnn/Demo_SNR1.5_ks11.txt",
+      "sha256": "8cd0cb950eca2192e06f2dbd0286e6bf8a72e233de6f949c0f8dba2d1e4a948b"
+    },
+    {
+      "file": "transformer_vs_cnn/Demo_SNR1.5_ks15.txt",
+      "source": "notebooks/transformer_vs_cnn/Demo_SNR1.5_ks15.txt",
+      "sha256": "67d502ddaa49d71d48c12358b1531932304fdcff1b592103e696f5a401f2072b"
+    },
+    {
+      "file": "cross_modality_spectra/demo_IR.txt",
+      "source": "notebooks/cross_modality_spectra/demo_IR.txt",
+      "sha256": "f762781c076eb9705ab5485c8ab93d41f7dfe4da0b13da74e58d862c6de9c09b"
+    },
+    {
+      "file": "cross_modality_spectra/demo_IR_F2P.txt",
+      "source": "notebooks/cross_modality_spectra/demo_IR_F2P.txt",
+      "sha256": "fa5a5e49432deedf25aed725d1f02c95bc5fb1c80ea63d6bfd2cb6c9154ce298"
+    },
+    {
+      "file": "cross_modality_spectra/demo_NMR.txt",
+      "source": "notebooks/cross_modality_spectra/demo_NMR.txt",
+      "sha256": "8e4753c41009544fb9919fb7d31ed853e2f910fbf1173964f629e4ef4be5e6df"
+    },
+    {
+      "file": "cross_modality_spectra/demo_NMR_F2P.txt",
+      "source": "notebooks/cross_modality_spectra/demo_NMR_F2P.txt",
+      "sha256": "b2c029e4d32935d3faea6780d91a98d778347feb55ab8ab1f775d6d33cdab7e4"
+    },
+    {
+      "file": "cross_modality_spectra/demo_XRD.txt",
+      "source": "notebooks/cross_modality_spectra/demo_XRD.txt",
+      "sha256": "4a4dfb049c37ff6de39484974bd5bfe49a56d7e869f96132066c6e7b2530c43d"
+    },
+    {
+      "file": "cross_modality_spectra/demo_XRD_F2P.txt",
+      "source": "notebooks/cross_modality_spectra/demo_XRD_F2P.txt",
+      "sha256": "a53ae77f8918cfb9a87043359cdeea9f0179d78f89bf7cbbc16c78781ac53ac2"
+    },
+    {
+      "file": "cross_instrument_spectra/HR/0.3s.txt",
+      "source": "notebooks/cross_instrument_spectra/HR/0.3s.txt",
+      "sha256": "1b64e18d2f569aab136b730c8e7f5443175f21656a4167c0b9d1bf18012186f6"
+    },
+    {
+      "file": "cross_instrument_spectra/HR/0.3s_F2P.txt",
+      "source": "notebooks/cross_instrument_spectra/HR/0.3s_F2P.txt",
+      "sha256": "472f4116c18cfe669cb1233547e2dca5c0b7832d068d63e2ff9af3cd8f61e0a3"
+    },
+    {
+      "file": "cross_instrument_spectra/HR/0.7s.txt",
+      "source": "notebooks/cross_instrument_spectra/HR/0.7s.txt",
+      "sha256": "b8c3df311e004d5af6b083f4864d11fd52089115e5c76bdc46dab4a01ca84d95"
+    },
+    {
+      "file": "cross_instrument_spectra/HR/0.7s_F2P.txt",
+      "source": "notebooks/cross_instrument_spectra/HR/0.7s_F2P.txt",
+      "sha256": "62fd681db23ddfce631b4e44b2403ce740a2f105df89ff1f658acbdf7b579e85"
+    },
+    {
+      "file": "cross_instrument_spectra/HR/1.2s.txt",
+      "source": "notebooks/cross_instrument_spectra/HR/1.2s.txt",
+      "sha256": "36aa107face5ab303e8b60c29a36f9b4fe4d36cfb070cdb9062341ec1d991084"
+    },
+    {
+      "file": "cross_instrument_spectra/HR/1.2s_F2P.txt",
+      "source": "notebooks/cross_instrument_spectra/HR/1.2s_F2P.txt",
+      "sha256": "9e66de06f596ef1399fb5a4ca9619150fc73275b4fefb3f5c70b830c974d3972"
+    },
+    {
+      "file": "cross_instrument_spectra/Raman-11/0.03s.txt",
+      "source": "notebooks/cross_instrument_spectra/Raman-11/0.03s.txt",
+      "sha256": "e0ee656d5df4214e90bf47918059496260463b7e08afac400e428a82b1fe3587"
+    },
+    {
+      "file": "cross_instrument_spectra/Raman-11/0.03s_F2P.txt",
+      "source": "notebooks/cross_instrument_spectra/Raman-11/0.03s_F2P.txt",
+      "sha256": "ca7e65d87897ec63566959ccab0b63d7beb4d6ffcff7f6b28687146edda6e248"
+    },
+    {
+      "file": "cross_instrument_spectra/Raman-11/0.1s.txt",
+      "source": "notebooks/cross_instrument_spectra/Raman-11/0.1s.txt",
+      "sha256": "e2d0e2759454ccb677f52eda88981bf50e3305e07a253f467ba0389a62f5ec34"
+    },
+    {
+      "file": "cross_instrument_spectra/Raman-11/0.1s_F2P.txt",
+      "source": "notebooks/cross_instrument_spectra/Raman-11/0.1s_F2P.txt",
+      "sha256": "68fb0d49752290efe3a491ea78635cfd7bc64480ec798adefc645270984db449"
+    },
+    {
+      "file": "cross_instrument_spectra/Raman-11/0.25s.txt",
+      "source": "notebooks/cross_instrument_spectra/Raman-11/0.25s.txt",
+      "sha256": "4605aab214640dd7d63d0b7f6149120e7794f291a94d18d927ba6b2f52ab232b"
+    },
+    {
+      "file": "cross_instrument_spectra/Raman-11/0.25s_F2P.txt",
+      "source": "notebooks/cross_instrument_spectra/Raman-11/0.25s_F2P.txt",
+      "sha256": "00d24bdd77184a577074bd8171a015d17c29659af683f8d6f094d566e088df96"
+    },
+    {
+      "file": "cross_instrument_spectra/Invia Raman/1.0s.txt",
+      "source": "notebooks/cross_instrument_spectra/Invia Raman/1.0s.txt",
+      "sha256": "06ea0889c6749b7560406cda72b773e2d5703231a9e4345a75ed010e0bdeed8f"
+    },
+    {
+      "file": "cross_instrument_spectra/Invia Raman/1.0s_F2P.txt",
+      "source": "notebooks/cross_instrument_spectra/Invia Raman/1.0s_F2P.txt",
+      "sha256": "732ad6116a622810a5a46d136b56e24cc31fb23661236e97b92e883a0589ef1d"
+    },
+    {
+      "file": "cross_instrument_spectra/Invia Raman/1.5s.txt",
+      "source": "notebooks/cross_instrument_spectra/Invia Raman/1.5s.txt",
+      "sha256": "746f9c7508e0abbf47f75e8f6aac8300e3612694059703d6be3ef9d3d66a4c0a"
+    },
+    {
+      "file": "cross_instrument_spectra/Invia Raman/1.5s_F2P.txt",
+      "source": "notebooks/cross_instrument_spectra/Invia Raman/1.5s_F2P.txt",
+      "sha256": "d77eae1e53d8f6559685f7ec98d56132bad2a43dd0d5d30ff52428e2d28d8bfb"
+    },
+    {
+      "file": "cross_instrument_spectra/Invia Raman/2.0s.txt",
+      "source": "notebooks/cross_instrument_spectra/Invia Raman/2.0s.txt",
+      "sha256": "09114d6bece6f8c78911fc912a123bac79b7ef4b9e3e16bd43fbd8a269966ac6"
+    },
+    {
+      "file": "cross_instrument_spectra/Invia Raman/2.0s_F2P.txt",
+      "source": "notebooks/cross_instrument_spectra/Invia Raman/2.0s_F2P.txt",
+      "sha256": "e317bc3dce7dd31664c25765f3ceff29905b087008dc9654606ee1ed5ff7f085"
+    },
+    {
+      "file": "cross_instrument_spectra/Xplora/0.4s.txt",
+      "source": "notebooks/cross_instrument_spectra/Xplora/0.4s.txt",
+      "sha256": "4869ca07aa78b284a8e16352acae8b48d0808bfc9e192862ac08c7cf015ff2c3"
+    },
+    {
+      "file": "cross_instrument_spectra/Xplora/0.4s_F2P.txt",
+      "source": "notebooks/cross_instrument_spectra/Xplora/0.4s_F2P.txt",
+      "sha256": "a602969036ab7b03dedb447b0ab9ee0d4d37ef95686ab7cbd8e3027af7fc7712"
+    },
+    {
+      "file": "cross_instrument_spectra/Xplora/0.6s.txt",
+      "source": "notebooks/cross_instrument_spectra/Xplora/0.6s.txt",
+      "sha256": "f05aea4922dc110cd33671ef5a58e514dd04d91725215bb82b16a3e933fd4f9d"
+    },
+    {
+      "file": "cross_instrument_spectra/Xplora/0.6s_F2P.txt",
+      "source": "notebooks/cross_instrument_spectra/Xplora/0.6s_F2P.txt",
+      "sha256": "558bbac059f65b7161fa69e8401fda6012a5710efb901813c8bbd2895f76391b"
+    },
+    {
+      "file": "cross_instrument_spectra/Xplora/0.8s.txt",
+      "source": "notebooks/cross_instrument_spectra/Xplora/0.8s.txt",
+      "sha256": "8defd495851eed7fec0312939b486640709deeb0d960f624a62dd811570ef704"
+    },
+    {
+      "file": "cross_instrument_spectra/Xplora/0.8s_F2P.txt",
+      "source": "notebooks/cross_instrument_spectra/Xplora/0.8s_F2P.txt",
+      "sha256": "ed4c5e81271d6ec127a78ac9d431003f6c3798478a3b5e8862bdace7503d2ae6"
+    },
+    {
+      "file": "cross_instrument_spectra/i-Raman/0.4s.txt",
+      "source": "notebooks/cross_instrument_spectra/i-Raman/0.4s.txt",
+      "sha256": "86fdcf703c0b0663e0a2a13ea784e045b5b183e37c5556242c967d09b88c5994"
+    },
+    {
+      "file": "cross_instrument_spectra/i-Raman/0.4s_F2P.txt",
+      "source": "notebooks/cross_instrument_spectra/i-Raman/0.4s_F2P.txt",
+      "sha256": "80b54b1205602b000a246d5aec40fa4467a1ebe68ef208e4028a9493a5160f3a"
+    },
+    {
+      "file": "cross_instrument_spectra/i-Raman/0.7s.txt",
+      "source": "notebooks/cross_instrument_spectra/i-Raman/0.7s.txt",
+      "sha256": "6b7c6027780219ec1195d0bef86b55d33f65e2a21ad930a2e33bf5fb90a53b6c"
+    },
+    {
+      "file": "cross_instrument_spectra/i-Raman/0.7s_F2P.txt",
+      "source": "notebooks/cross_instrument_spectra/i-Raman/0.7s_F2P.txt",
+      "sha256": "1aec7ac2b771f71f313db8b398dd263fa5cd7fa28e75e8fd6df0c8111cfd88f1"
+    },
+    {
+      "file": "cross_instrument_spectra/i-Raman/1.0s.txt",
+      "source": "notebooks/cross_instrument_spectra/i-Raman/1.0s.txt",
+      "sha256": "f07c277ab5a6f64f41a8476d69eec39348c74c877cdb4849b282cfed585ef1ef"
+    },
+    {
+      "file": "cross_instrument_spectra/i-Raman/1.0s_F2P.txt",
+      "source": "notebooks/cross_instrument_spectra/i-Raman/1.0s_F2P.txt",
+      "sha256": "202a5e74190057570e6cc19ffacd9462ec3807f6754d85aacf7e953e55d66255"
+    },
+    {
+      "file": "experimental_benchmark/MoS2.txt",
+      "columns": [
+        "raman_shift",
+        "raw",
+        "sg313",
+        "wtd3",
+        "peer",
+        "resunet",
+        "p2p",
+        "smae",
+        "f2p",
+        "f2p_ft",
+        "gt"
+      ],
+      "sources": {
+        "raw": [
+          "datasets/test/2DMs.h5",
+          "noisy",
+          12
+        ],
+        "sg313": [
+          "experiments/eval sg313/2DMs.h5",
+          "denoised",
+          12
+        ],
+        "wtd3": [
+          "experiments/eval wtd3/2DMs.h5",
+          "denoised",
+          12
+        ],
+        "peer": [
+          "experiments/peer ws10 loops2/2DMs.h5",
+          "denoised",
+          12
+        ],
+        "resunet": [
+          "experiments/training resunet/output/2026-03-04/2DMs.h5",
+          "denoised",
+          12
+        ],
+        "p2p": [
+          "experiments/p2p_raw/2DMs.h5",
+          "denoised",
+          12
+        ],
+        "smae": [
+          "experiments/smae raw ps1/2DMs.h5",
+          "denoised",
+          12
+        ],
+        "f2p": [
+          "experiments/training f2p rpe/output/2026-03-05/2DMs.h5",
+          "denoised",
+          12
+        ],
+        "f2p_ft": [
+          "experiments/fine-tuning f2p rpe on 2dmaterial epoch100/output/2026-03-06/2DMs.h5",
+          "denoised",
+          12
+        ],
+        "gt": [
+          "datasets/test/2DMs.h5",
+          "gt",
+          12
+        ]
+      },
+      "axis": {
+        "kind": "original_plot_linspace",
+        "limits": [
+          148,
+          642
+        ],
+        "length": 1600
+      },
+      "sha256": "25edb9911d2e2503316ac0ca9d13283a03e84355037d4cc691c82a3977cd07d4"
+    },
+    {
+      "file": "experimental_benchmark/WS2.txt",
+      "columns": [
+        "raman_shift",
+        "raw",
+        "sg313",
+        "wtd3",
+        "peer",
+        "resunet",
+        "p2p",
+        "smae",
+        "f2p",
+        "f2p_ft",
+        "gt"
+      ],
+      "sources": {
+        "raw": [
+          "datasets/test/2DMs.h5",
+          "noisy",
+          24
+        ],
+        "sg313": [
+          "experiments/eval sg313/2DMs.h5",
+          "denoised",
+          24
+        ],
+        "wtd3": [
+          "experiments/eval wtd3/2DMs.h5",
+          "denoised",
+          24
+        ],
+        "peer": [
+          "experiments/peer ws10 loops2/2DMs.h5",
+          "denoised",
+          24
+        ],
+        "resunet": [
+          "experiments/training resunet/output/2026-03-04/2DMs.h5",
+          "denoised",
+          24
+        ],
+        "p2p": [
+          "experiments/p2p_raw/2DMs.h5",
+          "denoised",
+          24
+        ],
+        "smae": [
+          "experiments/smae raw ps1/2DMs.h5",
+          "denoised",
+          24
+        ],
+        "f2p": [
+          "experiments/training f2p rpe/output/2026-03-05/2DMs.h5",
+          "denoised",
+          24
+        ],
+        "f2p_ft": [
+          "experiments/fine-tuning f2p rpe on 2dmaterial epoch100/output/2026-03-06/2DMs.h5",
+          "denoised",
+          24
+        ],
+        "gt": [
+          "datasets/test/2DMs.h5",
+          "gt",
+          24
+        ]
+      },
+      "axis": {
+        "kind": "original_plot_linspace",
+        "limits": [
+          238.424,
+          555.45
+        ],
+        "length": 1600
+      },
+      "sha256": "b86e7edfab2683cae65e1798062074498f20eba093b8fdc55837ccc75a92a817"
+    },
+    {
+      "file": "experimental_benchmark/WSe2.txt",
+      "columns": [
+        "raman_shift",
+        "raw",
+        "sg313",
+        "wtd3",
+        "peer",
+        "resunet",
+        "p2p",
+        "smae",
+        "f2p",
+        "f2p_ft",
+        "gt"
+      ],
+      "sources": {
+        "raw": [
+          "datasets/test/2DMs.h5",
+          "noisy",
+          49
+        ],
+        "sg313": [
+          "experiments/eval sg313/2DMs.h5",
+          "denoised",
+          49
+        ],
+        "wtd3": [
+          "experiments/eval wtd3/2DMs.h5",
+          "denoised",
+          49
+        ],
+        "peer": [
+          "experiments/peer ws10 loops2/2DMs.h5",
+          "denoised",
+          49
+        ],
+        "resunet": [
+          "experiments/training resunet/output/2026-03-04/2DMs.h5",
+          "denoised",
+          49
+        ],
+        "p2p": [
+          "experiments/p2p_raw/2DMs.h5",
+          "denoised",
+          49
+        ],
+        "smae": [
+          "experiments/smae raw ps1/2DMs.h5",
+          "denoised",
+          49
+        ],
+        "f2p": [
+          "experiments/training f2p rpe/output/2026-03-05/2DMs.h5",
+          "denoised",
+          49
+        ],
+        "f2p_ft": [
+          "experiments/fine-tuning f2p rpe on 2dmaterial epoch100/output/2026-03-06/2DMs.h5",
+          "denoised",
+          49
+        ],
+        "gt": [
+          "datasets/test/2DMs.h5",
+          "gt",
+          49
+        ]
+      },
+      "axis": {
+        "kind": "original_plot_linspace",
+        "limits": [
+          2,
+          331
+        ],
+        "length": 1600
+      },
+      "sha256": "374b11e11fb197216e2e1813492efc056992caa729b3e6a4d874384de6c2c512"
+    },
+    {
+      "file": "experimental_benchmark/HeLa.txt",
+      "columns": [
+        "raman_shift",
+        "raw",
+        "sg313",
+        "wtd3",
+        "peer",
+        "resunet",
+        "p2p",
+        "smae",
+        "f2p",
+        "f2p_ft",
+        "gt"
+      ],
+      "sources": {
+        "raw": [
+          "datasets/test/Hela.h5",
+          "noisy",
+          21
+        ],
+        "sg313": [
+          "experiments/eval sg313/Hela.h5",
+          "denoised",
+          21
+        ],
+        "wtd3": [
+          "experiments/eval wtd3/Hela.h5",
+          "denoised",
+          21
+        ],
+        "peer": [
+          "experiments/peer ws10 loops2/Hela.h5",
+          "denoised",
+          21
+        ],
+        "resunet": [
+          "experiments/training resunet/output/2026-03-04/Hela.h5",
+          "denoised",
+          21
+        ],
+        "p2p": [
+          "experiments/p2p_raw/Hela.h5",
+          "denoised",
+          21
+        ],
+        "smae": [
+          "experiments/smae raw ps1/Hela.h5",
+          "denoised",
+          21
+        ],
+        "f2p": [
+          "experiments/training f2p rpe/output/2026-03-05/Hela.h5",
+          "denoised",
+          21
+        ],
+        "f2p_ft": [
+          "experiments/fine-tuning f2p rpe on hela/output/2026-03-06/Hela.h5",
+          "denoised",
+          21
+        ],
+        "gt": [
+          "datasets/test/Hela.h5",
+          "gt",
+          21
+        ]
+      },
+      "axis": {
+        "kind": "original_plot_linspace",
+        "limits": [
+          500,
+          3000
+        ],
+        "length": 1600
+      },
+      "sha256": "e415c7848891b777872a071554d1b1c5f141521eafb8a3b3ec02e693a671f9c9"
+    },
+    {
+      "file": "experimental_benchmark/SSEs.txt",
+      "columns": [
+        "raman_shift",
+        "raw",
+        "sg313",
+        "wtd3",
+        "peer",
+        "resunet",
+        "p2p",
+        "smae",
+        "f2p",
+        "f2p_ft",
+        "gt"
+      ],
+      "sources": {
+        "raw": [
+          "datasets/test/SSEs.h5",
+          "noisy",
+          2
+        ],
+        "sg313": [
+          "experiments/eval sg313/SSEs.h5",
+          "denoised",
+          2
+        ],
+        "wtd3": [
+          "experiments/eval wtd3/SSEs.h5",
+          "denoised",
+          2
+        ],
+        "peer": [
+          "experiments/peer ws10 loops2/SSEs.h5",
+          "denoised",
+          2
+        ],
+        "resunet": [
+          "experiments/training resunet/output/2026-03-04/SSEs.h5",
+          "denoised",
+          2
+        ],
+        "p2p": [
+          "experiments/p2p_raw/SSEs.h5",
+          "denoised",
+          2
+        ],
+        "smae": [
+          "experiments/smae raw ps1/SSEs.h5",
+          "denoised",
+          2
+        ],
+        "f2p": [
+          "experiments/training f2p rpe/output/2026-03-05/SSEs.h5",
+          "denoised",
+          2
+        ],
+        "f2p_ft": [
+          "experiments/fine-tuning f2p rpe on electro/output/2026-03-06/SSEs.h5",
+          "denoised",
+          2
+        ],
+        "gt": [
+          "datasets/test/SSEs.h5",
+          "gt",
+          2
+        ]
+      },
+      "axis": {
+        "kind": "original_plot_linspace",
+        "limits": [
+          177,
+          2718
+        ],
+        "length": 1600
+      },
+      "sha256": "80f720b609d5256724b6d05f52bb87097d88e4fcd9a4a9088e4e69f82ac572c0"
+    }
+  ]
+}
