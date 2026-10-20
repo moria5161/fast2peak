@@ -27,7 +27,74 @@ python -m pip install -r requirements.txt
 
 For CPU-only installation, replace the PyTorch index URL with `https://download.pytorch.org/whl/cpu`. For other platforms, consult the [official PyTorch installation instructions](https://pytorch.org/get-started/previous-versions/#v270). CPU execution is not intended for reproducing GPU runtime measurements. No environment installation or training is performed automatically by this repository.
 
-## Evaluation and Reproducing
+## Usage
+
+Run the following commands from the repository root after preparing the data and, for evaluation, the checkpoint. Downloads are still pending as noted above. On a cluster, run training and inference on an allocated compute node, not the login node.
+
+### Training
+
+Prepare `datasets/train/train.h5` and `datasets/train/val.h5`. Each file must contain a `noisy` array of shape `[N, L]`; the main F2P configuration uses `L = 1600`. Self-supervised training and validation use noisy observations, not clean `gt` targets.
+
+**Current implementation note:** the `F2P` branch in `utils/spec_loader.py` currently selects `BlockMaskDataset` with a default `--block_size 8`; its `MaskDataset` calls are commented out. The commands below document the current training interface, not a verified reproduction of the paper's single-pixel masking protocol. Restore the single-pixel dataset branch before reproducing that protocol; `--mask_ratio 0.05` alone does not change the masking strategy.
+
+```bash
+python main.py --train \
+    --exp_name f2p_train \
+    --model_name F2P \
+    --train_data_dir datasets/train \
+    --spectrum_length 1600 \
+    --patch_size 16 --embed_dim 256 --depth 8 --heads 8 \
+    --mask_ratio 0.05 --gamma 11 \
+    --epochs 1000 --batch_size 512 \
+    --lr 1e-4 --min_lr 1e-6 --warmup_epochs 10 \
+    --weight_decay 1e-3 --seed 615
+```
+
+For single-node multi-GPU training, replace `python main.py --train` with `torchrun --standalone --nproc_per_node=4 main.py --train --ddp`, keeping the other arguments. Set the process count to the allocated GPU count. `--batch_size` is per process, so changing the GPU count changes the effective global batch size.
+
+The best checkpoint is selected by validation masked MSE and saved as `experiments/f2p_train/checkpoints/best_checkpoint.pth`, alongside `config.yaml`. TensorBoard logs are written to `logs/f2p_train`.
+
+### Evaluation
+
+For quantitative evaluation, the test HDF5 file must contain matching `noisy` and `gt` arrays of shape `[N, L]`. Without `gt`, the evaluator saves denoised spectra but skips reference-based metrics.
+
+```bash
+python main.py --test \
+    --test_model_path experiments/f2p_train/checkpoints/best_checkpoint.pth \
+    --test_datapath datasets/test/Simu.h5 \
+    --test_batch_size 1024
+```
+
+Replace the checkpoint path with the released pretrained checkpoint to evaluate without training. Its adjacent `config.yaml` is required: the evaluator restores the architecture from that file, including the legacy `Fast2PeakRPE` to `F2P` name mapping. Use a single process for evaluation; do not add `--ddp`.
+
+For the example above, outputs are saved under `experiments/f2p_train/output/YYYY-MM-DD/`:
+
+- `Simu.h5`: predictions under the `denoised` key.
+- `Simu_eval.log`: mean SNR (dB), RMSE and SSS when `gt` is available.
+- `Simu_metrics_details.csv`: per-spectrum metrics.
+
+Self-supervised F2P inference includes the existing noisy-input-based amplitude correction. IR, XRD and NMR use their own benchmark evaluators and metric definitions linked below.
+
+### Key Arguments
+
+| Argument | Description |
+|---|---|
+| `--train` / `--test` | Train a model or run inference/evaluation. |
+| `--exp_name` | Training experiment name used for checkpoint and log directories. |
+| `--train_data_dir` | Directory containing `train.h5` and `val.h5`. |
+| `--mask_ratio` | Fraction of spectral points selected for masking; explicitly set to `0.05` above rather than the CLI default `0.25`. |
+| `--gamma` | Neighborhood parameter used to replace selected points. |
+| `--test_model_path` | Checkpoint path; keep its `config.yaml` in the same directory. |
+| `--test_datapath` | Test file, or a directory of test files. |
+| `--test_batch_size` | Inference batch size; reduce it if GPU memory is limited. |
+
+### Training Logs
+
+```bash
+tensorboard --logdir logs/f2p_train
+```
+
+## Benchmark Reproduction
 
 Data and weights from the pending release are required before running the benchmarks. Each subproject documents its preparation, training/inference, evaluation protocol and numerical results:
 
@@ -43,7 +110,11 @@ The manuscript citation will be added when available.
 
 ## License
 
-Original Fast2Peak code and documentation are licensed under the [Apache License 2.0](LICENSE). See [NOTICE](NOTICE) for attribution and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for third-party components, exclusions and outstanding permission checks. Third-party code retains its own terms; it is not relicensed by the root license. Datasets, model weights and third-party fonts are not covered by this code license and require separate terms.
+Copyright 2026 Fast2Peak contributors. Original Fast2Peak code and documentation are licensed under the [Apache License 2.0](LICENSE).
+
+Third-party code retains its original ownership and terms. The IR utilities in `otherbench/IR/utils/upstream/` are GPL-3.0-or-later; the [GPL text](LICENSES/GPL-3.0.txt) and source notices are retained. See the [SMAE](othermethods/smae/docs/provenance.md) and [NMR](otherbench/NMR/docs/model_provenance.md) provenance records for baseline attribution. Baseline files with unresolved provenance or permissions are excluded from the Apache grant pending review; attribution alone does not grant redistribution rights.
+
+Datasets, model weights and third-party fonts are not covered by this code license and require separate terms.
 
 ## Contact
 Welcome to contact us or raise issues if you have any questions. 
