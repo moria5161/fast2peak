@@ -3,7 +3,7 @@ paths:
   raw_data: datasets/raw
   benchmark_data: datasets/benchmark
   evaluation_output: outputs/evaluation
-  public_docs: docs
+  public_docs: outputs/exported
 
 inference:
   device: auto

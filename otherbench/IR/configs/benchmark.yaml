@@ -3,7 +3,7 @@ paths:
   paired_data: datasets/paired
   autoencoder_output: outputs/autoencoder
   evaluation_output: outputs/evaluation
-  public_docs: docs
+  public_docs: outputs/exported
   f2p_checkpoint: "../../experiments/training f2p rpe/checkpoints/best_checkpoint.pth"
 
 data:

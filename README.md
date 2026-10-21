@@ -1,7 +1,8 @@
 # Fast2Peak: High-Fidelity Restoration Algorithm by Single-Pixel Masking towards Real-Time Spectral Measurements
 
 ## Abstract
-Improving the temporal and spatial resolution of spectroscopy inevitably reduces the photons available to each measurement, pushing rapid measurements into photon-starved conditions where weak spectral features are obscured by stochastic background noise. Here, we present Fast2Peak (F2P), a self-supervised Transformer framework that transforms spectral restoration task into a context-prediction problem. Given that physically constrained spectral signals exhibit strong local continuity, whereas the stochastic noise fluctuate randomly and does not possess the continuity across neighboring spectral pixels, single-pixel masking enables F2P to restore the predictable signal structure while suppressing unpredictable fluctuations even without clean reference spectra. F2P achieves high-fidelity restoration within milliseconds, making real-time “acquire-and-process” operation possible.
+
+Improving the temporal and spatial resolution of spectroscopy inevitably reduces the photons available to each measurement, pushing rapid measurements into photon-starved conditions where weak spectral features are obscured by stochastic background noise. Here, we present Fast2Peak (F2P), a self-supervised Transformer framework that transforms spectral restoration task into a context-prediction problem. Given that physically constrained spectral signals exhibit strong local continuity, whereas the stochastic noise fluctuate randomly and does not possess the continuity across neighboring spectral pixels, single-pixel masking enables F2P to restore the predictable signal structure while suppressing unpredictable fluctuations even without clean reference spectra. Unlike conventional offline spectral restoration, F2P achieves high-fidelity restoration within milliseconds, enabling real-time “acquire-and-process” operation. We demonstrate this capability in time-resolved electrochemical surface-enhanced Raman spectroscopy and hyperspectral Raman imaging, where spectral restoration is performed during data acquisition. In addition, F2P has demonstrated its robust generalization across different instruments and spectral modalities, including Raman, nuclear magnetic resonance, X-ray diffraction and Fourier-transform infrared spectroscopy.
 
 ## Framework of F2P
 
@@ -96,11 +97,13 @@ tensorboard --logdir logs/f2p_train
 
 ## Benchmark Reproduction
 
-Data and weights from the pending release are required before running the benchmarks. Each subproject documents its preparation, training/inference, evaluation protocol and numerical results:
+Data and weights from the pending release are required before running the benchmarks. Code and configurations are organized by modality:
 
-- [IR benchmark](otherbench/IR/README.md)
-- [XRD benchmark](otherbench/XRD/README.md)
-- [NMR benchmark](otherbench/NMR/README.md)
+- [IR](otherbench/IR/)
+- [XRD](otherbench/XRD/)
+- [NMR](otherbench/NMR/)
+
+See [benchmark results](otherbench/RESULTS.md) for the finalized tables.
 
 Local scheduler settings are not required by the Python entry points. The optional Peak2Peak Slurm helper should be submitted from the repository root: `sbatch othermethods/peak2peak/p2p.sh`. Select a node or partition through `sbatch` options if required by your cluster.
 
@@ -112,7 +115,7 @@ The manuscript citation will be added when available.
 
 Copyright 2026 Fast2Peak contributors. Original Fast2Peak code and documentation are licensed under the [Apache License 2.0](LICENSE).
 
-Third-party code retains its original ownership and terms. The IR utilities in `otherbench/IR/utils/upstream/` are GPL-3.0-or-later; the [GPL text](LICENSES/GPL-3.0.txt) and source notices are retained. See the [SMAE](othermethods/smae/docs/provenance.md) and [NMR](otherbench/NMR/docs/model_provenance.md) provenance records for baseline attribution. Baseline files with unresolved provenance or permissions are excluded from the Apache grant pending review; attribution alone does not grant redistribution rights.
+Third-party code retains its original ownership and terms. The IR utilities in `otherbench/IR/utils/upstream/` are GPL-3.0-or-later; the [GPL text](LICENSES/GPL-3.0.txt) and source notices are retained. See the [SMAE provenance](othermethods/smae/docs/provenance.md) and source attribution in the NMR model files. Baseline files with unresolved provenance or permissions are excluded from the Apache grant pending review; attribution alone does not grant redistribution rights.
 
 Datasets, model weights and third-party fonts are not covered by this code license and require separate terms.
 

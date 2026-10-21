@@ -9,7 +9,7 @@ paths:
   validation_data: datasets/validation/benchmark.h5
   benchmark_data: datasets/benchmark/benchmark.h5
   evaluation_output: outputs/evaluation
-  public_docs: docs
+  public_docs: outputs/exported
 
 noise_conditions:
   - {name: gaussian_sigma_0.010, kind: gaussian, sigma: 0.01}

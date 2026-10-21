@@ -1,4 +1,4 @@
-"""Export final numerical results and QC provenance to public docs."""
+"""Export numerical results and QC records to a local output directory."""
 
 import argparse
 import csv
@@ -13,7 +13,7 @@ def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--evaluation-dir", type=Path, default=XRD_ROOT / "outputs" / "evaluation")
     parser.add_argument("--data-dir", type=Path, default=XRD_ROOT / "datasets" / "benchmark")
-    parser.add_argument("--output-dir", type=Path, default=XRD_ROOT / "docs")
+    parser.add_argument("--output-dir", type=Path, default=XRD_ROOT / "outputs" / "exported")
     args = parser.parse_args(argv)
     output = args.output_dir.resolve()
     output.mkdir(parents=True, exist_ok=True)

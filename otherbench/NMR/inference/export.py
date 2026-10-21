@@ -9,7 +9,7 @@ from otherbench.NMR.utils.config import NMR_ROOT
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--evaluation-dir", type=Path, default=NMR_ROOT / "outputs/evaluation")
-    parser.add_argument("--output-dir", type=Path, default=NMR_ROOT / "docs")
+    parser.add_argument("--output-dir", type=Path, default=NMR_ROOT / "outputs" / "exported")
     args = parser.parse_args(argv)
     args.output_dir.mkdir(parents=True, exist_ok=True)
     for name in ("leaderboard.csv", "overall_leaderboard.csv", "summary.json"):

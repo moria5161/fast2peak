@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """PyTorch equivalent of the authors' TensorLayer DN-Unet inference model.
 
+Source: https://lingroup.xmu.edu.cn/info/1150/1117.htm
+Paper: https://doi.org/10.1021/acs.analchem.0c03087
+No software license was declared in the retained upstream records.
+
 The official model uses 2-D convolutions on tensors shaped [B, 1, 8192, 1].
 Because the height is always one, TensorFlow SAME padding selects kernel row 1;
 the implementation below is the exactly corresponding 1-D network.

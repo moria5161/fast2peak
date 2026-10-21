@@ -1,4 +1,4 @@
-"""Export final metric artifacts to the public docs directory."""
+"""Export computed metric artifacts to a local output directory."""
 
 import argparse
 import json
@@ -12,7 +12,7 @@ from otherbench.IR.utils.metrics import export_leaderboard
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--evaluation-dir", type=Path, default=IR_ROOT / "outputs" / "evaluation")
-    parser.add_argument("--output-dir", type=Path, default=IR_ROOT / "docs")
+    parser.add_argument("--output-dir", type=Path, default=IR_ROOT / "outputs" / "exported")
     args = parser.parse_args(argv)
     source = args.evaluation_dir.resolve() / "summary.json"
     summary = json.loads(source.read_text(encoding="utf-8"))

@@ -1,7 +1,9 @@
 """LD-Net LD-3 architecture adapted from HaolinZhan/LD-Net, commit 38130d6.
 
 Only the required ModeltransCompare and its two block classes are retained.
-Original authorship is documented in docs/model_provenance.md.
+Source: https://github.com/HaolinZhan/LD-Net-for-NMR-spectroscopy-denoising
+Paper: https://doi.org/10.3866/PKU.WHXB202310045
+No software license was declared in the retained upstream records.
 """
 
 import torch
