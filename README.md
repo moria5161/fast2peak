@@ -1,14 +1,15 @@
 # Fast2Peak: High-Fidelity Restoration Algorithm by Single-Pixel Masking towards Real-Time Spectral Measurements
 
-<p align="center">
-  <a href="https://arxiv.org/abs/2610.29753"><img src="docs/badges/paper.svg" alt="Paper: arXiv 2610.29753" height="26"></a>
-  <a href="https://huggingface.co/datasets/moria5161/fast2peak"><img src="docs/badges/datasets.svg" alt="Hugging Face datasets" height="26"></a>
-  <a href="https://huggingface.co/moria5161/fast2peak"><img src="docs/badges/models.svg" alt="Hugging Face models and configurations" height="26"></a>
-  <a href="https://huggingface.co/datasets/moria5161/fast2peak/tree/main/real-time%20denoising%20video"><img src="docs/badges/video.svg" alt="Real-time denoising video" height="26"></a>
-  <a href="LICENSE"><img src="docs/badges/license.svg" alt="Code license: Apache 2.0; third-party exceptions below" height="26"></a>
+<p>
+  <a href="https://arxiv.org/abs/2610.29753"><img src="docs/badges/paper.svg" alt="Paper: arXiv 2610.29753" height="20"></a>
+  <a href="https://huggingface.co/moria5161/fast2peak"><img src="docs/badges/models.svg" alt="Hugging Face: fast2peak" height="20"></a>
+  <a href="LICENSE"><img src="docs/badges/license.svg" alt="Code license: Apache 2.0; third-party exceptions below" height="20"></a>
 </p>
 
-<p align="center">
+<p>
+  <a href="https://huggingface.co/datasets/moria5161/fast2peak">Datasets</a> &nbsp;·&nbsp;
+  <a href="https://huggingface.co/moria5161/fast2peak/tree/main/checkpoints">Weights</a> &nbsp;·&nbsp;
+  <a href="https://huggingface.co/datasets/moria5161/fast2peak/tree/main/real-time%20denoising%20video">Video</a> &nbsp;·&nbsp;
   <a href="#getting-started">Quickstart</a> &nbsp;·&nbsp;
   <a href="#usage">Train &amp; Evaluate</a> &nbsp;·&nbsp;
   <a href="otherbench/RESULTS.md">Benchmarks</a> &nbsp;·&nbsp;
