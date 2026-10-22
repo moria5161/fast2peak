@@ -1,5 +1,5 @@
 {
-  "description": "Only spectra read by plot_paper.ipynb. Metrics remain inline in plotting cells.",
+  "description": "Only spectra read by paper_figures.ipynb. Metrics remain inline in plotting cells.",
   "indexing": "HDF5 row indices are zero-based; source paths are provenance only and are not runtime dependencies.",
   "files": [
     {
@@ -258,146 +258,6 @@
       "sha256": "6cc0ea3ccee6790d98510658a1ecd91c5301c1ab2ac4efc20a3631ddf08dd528"
     },
     {
-      "file": "mask_vs_full/Demo_GT.txt",
-      "source": "notebooks/mask_vs_full/Demo_GT.txt",
-      "sha256": "dbac4d922af08d5202709773a6cc8faef43d8b48a0fb0fb1cfb579c024be396b"
-    },
-    {
-      "file": "mask_vs_full/Demo_SNR4.0.txt",
-      "source": "notebooks/mask_vs_full/Demo_SNR4.0.txt",
-      "sha256": "68cb90eeee70201252b3fac1f22424b0239f5862a5281db5c0022802bfcb9a70"
-    },
-    {
-      "file": "mask_vs_full/Demo_SNR4.0_mask.txt",
-      "source": "notebooks/mask_vs_full/Demo_SNR4.0_mask.txt",
-      "sha256": "af000258299271273c036787ef5b1cfd4b2c132d2f24d599e5dae86b3187ff7a"
-    },
-    {
-      "file": "mask_vs_full/Demo_SNR4.0_full.txt",
-      "source": "notebooks/mask_vs_full/Demo_SNR4.0_full.txt",
-      "sha256": "0f98adf0d53edeb663a691281636970a85c134a996503961578c1ccf6780c68a"
-    },
-    {
-      "file": "mask_vs_full/Demo_SNR2.5.txt",
-      "source": "notebooks/mask_vs_full/Demo_SNR2.5.txt",
-      "sha256": "0a400c61829c5d52bc513c09d6ea83b689d81e68353db1dca466f35d918ebcf3"
-    },
-    {
-      "file": "mask_vs_full/Demo_SNR2.5_mask.txt",
-      "source": "notebooks/mask_vs_full/Demo_SNR2.5_mask.txt",
-      "sha256": "149e329412ac16cb514fc35cdbae228301c0d2c054683aa08cd41b1e8ffe6915"
-    },
-    {
-      "file": "mask_vs_full/Demo_SNR2.5_full.txt",
-      "source": "notebooks/mask_vs_full/Demo_SNR2.5_full.txt",
-      "sha256": "9946421e05c91e6b36fad8e01d36a06aeec1e90205274ce889ada4c5fca83827"
-    },
-    {
-      "file": "mask_vs_full/Demo_SNR1.5.txt",
-      "source": "notebooks/mask_vs_full/Demo_SNR1.5.txt",
-      "sha256": "4eabc296ba7aed3512a796b89aaf3ba392a3c0f4fcceee0f4cc9df3e25343a73"
-    },
-    {
-      "file": "mask_vs_full/Demo_SNR1.5_mask.txt",
-      "source": "notebooks/mask_vs_full/Demo_SNR1.5_mask.txt",
-      "sha256": "fe083af8afaea89325438a4019dc4a946ae21b1803760458a0039c1d6e7dc411"
-    },
-    {
-      "file": "mask_vs_full/Demo_SNR1.5_full.txt",
-      "source": "notebooks/mask_vs_full/Demo_SNR1.5_full.txt",
-      "sha256": "5e9e1ca0c70636c2e3c41a1340e3353b26b75e115f0d9dc1ddf58e79d9cc1f17"
-    },
-    {
-      "file": "transformer_vs_cnn/Demo_SNR4.0_F2P.txt",
-      "source": "notebooks/transformer_vs_cnn/Demo_SNR4.0_F2P.txt",
-      "sha256": "af000258299271273c036787ef5b1cfd4b2c132d2f24d599e5dae86b3187ff7a"
-    },
-    {
-      "file": "transformer_vs_cnn/Demo_SNR4.0_ks7.txt",
-      "source": "notebooks/transformer_vs_cnn/Demo_SNR4.0_ks7.txt",
-      "sha256": "be36ce6806489d1d0480d4dcb5992d77b93864a0e95c37d07cc6fa26d481b89a"
-    },
-    {
-      "file": "transformer_vs_cnn/Demo_SNR4.0_ks11.txt",
-      "source": "notebooks/transformer_vs_cnn/Demo_SNR4.0_ks11.txt",
-      "sha256": "3b4d08ebd7bd85611331947497236454607d53ef694f73b64d65404c8235ee4a"
-    },
-    {
-      "file": "transformer_vs_cnn/Demo_SNR4.0_ks15.txt",
-      "source": "notebooks/transformer_vs_cnn/Demo_SNR4.0_ks15.txt",
-      "sha256": "7a035ce1f9f312ca329a87a82a05a4c5babc9b41a86eb21b3de31f727be7960d"
-    },
-    {
-      "file": "transformer_vs_cnn/Demo_SNR2.5_F2P.txt",
-      "source": "notebooks/transformer_vs_cnn/Demo_SNR2.5_F2P.txt",
-      "sha256": "149e329412ac16cb514fc35cdbae228301c0d2c054683aa08cd41b1e8ffe6915"
-    },
-    {
-      "file": "transformer_vs_cnn/Demo_SNR2.5_ks7.txt",
-      "source": "notebooks/transformer_vs_cnn/Demo_SNR2.5_ks7.txt",
-      "sha256": "9bc4d387ebacb188b0e0a64d4c5e3b8b747e8eaa7a8e424bc3e11803f111e870"
-    },
-    {
-      "file": "transformer_vs_cnn/Demo_SNR2.5_ks11.txt",
-      "source": "notebooks/transformer_vs_cnn/Demo_SNR2.5_ks11.txt",
-      "sha256": "b06aa8ddbe776f5b1a68e7c4bbc6738266faccdbf650eb12fb4ceaaa465f2f04"
-    },
-    {
-      "file": "transformer_vs_cnn/Demo_SNR2.5_ks15.txt",
-      "source": "notebooks/transformer_vs_cnn/Demo_SNR2.5_ks15.txt",
-      "sha256": "a28bfc84f93166c6002820ca2b1c4ce84ba0ef589ca5c15a4dab4098e7a23d32"
-    },
-    {
-      "file": "transformer_vs_cnn/Demo_SNR1.5_F2P.txt",
-      "source": "notebooks/transformer_vs_cnn/Demo_SNR1.5_F2P.txt",
-      "sha256": "fe083af8afaea89325438a4019dc4a946ae21b1803760458a0039c1d6e7dc411"
-    },
-    {
-      "file": "transformer_vs_cnn/Demo_SNR1.5_ks7.txt",
-      "source": "notebooks/transformer_vs_cnn/Demo_SNR1.5_ks7.txt",
-      "sha256": "a8119e48dfe483c6c137f590aef1b966be9e3a74b19a55eec877b62df3dc1ca3"
-    },
-    {
-      "file": "transformer_vs_cnn/Demo_SNR1.5_ks11.txt",
-      "source": "notebooks/transformer_vs_cnn/Demo_SNR1.5_ks11.txt",
-      "sha256": "8cd0cb950eca2192e06f2dbd0286e6bf8a72e233de6f949c0f8dba2d1e4a948b"
-    },
-    {
-      "file": "transformer_vs_cnn/Demo_SNR1.5_ks15.txt",
-      "source": "notebooks/transformer_vs_cnn/Demo_SNR1.5_ks15.txt",
-      "sha256": "67d502ddaa49d71d48c12358b1531932304fdcff1b592103e696f5a401f2072b"
-    },
-    {
-      "file": "cross_modality_spectra/demo_IR.txt",
-      "source": "notebooks/cross_modality_spectra/demo_IR.txt",
-      "sha256": "f762781c076eb9705ab5485c8ab93d41f7dfe4da0b13da74e58d862c6de9c09b"
-    },
-    {
-      "file": "cross_modality_spectra/demo_IR_F2P.txt",
-      "source": "notebooks/cross_modality_spectra/demo_IR_F2P.txt",
-      "sha256": "fa5a5e49432deedf25aed725d1f02c95bc5fb1c80ea63d6bfd2cb6c9154ce298"
-    },
-    {
-      "file": "cross_modality_spectra/demo_NMR.txt",
-      "source": "notebooks/cross_modality_spectra/demo_NMR.txt",
-      "sha256": "8e4753c41009544fb9919fb7d31ed853e2f910fbf1173964f629e4ef4be5e6df"
-    },
-    {
-      "file": "cross_modality_spectra/demo_NMR_F2P.txt",
-      "source": "notebooks/cross_modality_spectra/demo_NMR_F2P.txt",
-      "sha256": "b2c029e4d32935d3faea6780d91a98d778347feb55ab8ab1f775d6d33cdab7e4"
-    },
-    {
-      "file": "cross_modality_spectra/demo_XRD.txt",
-      "source": "notebooks/cross_modality_spectra/demo_XRD.txt",
-      "sha256": "4a4dfb049c37ff6de39484974bd5bfe49a56d7e869f96132066c6e7b2530c43d"
-    },
-    {
-      "file": "cross_modality_spectra/demo_XRD_F2P.txt",
-      "source": "notebooks/cross_modality_spectra/demo_XRD_F2P.txt",
-      "sha256": "a53ae77f8918cfb9a87043359cdeea9f0179d78f89bf7cbbc16c78781ac53ac2"
-    },
-    {
       "file": "cross_instrument_spectra/HR/0.3s.txt",
       "source": "notebooks/cross_instrument_spectra/HR/0.3s.txt",
       "sha256": "1b64e18d2f569aab136b730c8e7f5443175f21656a4167c0b9d1bf18012186f6"
@@ -584,7 +444,7 @@
           12
         ],
         "resunet": [
-          "experiments/training resunet/output/2026-03-04/2DMs.h5",
+          "experiments/resunet/output/2026-03-04/2DMs.h5",
           "denoised",
           12
         ],
@@ -599,12 +459,12 @@
           12
         ],
         "f2p": [
-          "experiments/training f2p rpe/output/2026-03-05/2DMs.h5",
+          "experiments/f2p/output/2026-03-05/2DMs.h5",
           "denoised",
           12
         ],
         "f2p_ft": [
-          "experiments/fine-tuning f2p rpe on 2dmaterial epoch100/output/2026-03-06/2DMs.h5",
+          "experiments/f2p-ft on 2dmaterial epoch100/output/2026-03-06/2DMs.h5",
           "denoised",
           12
         ],
@@ -661,7 +521,7 @@
           24
         ],
         "resunet": [
-          "experiments/training resunet/output/2026-03-04/2DMs.h5",
+          "experiments/resunet/output/2026-03-04/2DMs.h5",
           "denoised",
           24
         ],
@@ -676,12 +536,12 @@
           24
         ],
         "f2p": [
-          "experiments/training f2p rpe/output/2026-03-05/2DMs.h5",
+          "experiments/f2p/output/2026-03-05/2DMs.h5",
           "denoised",
           24
         ],
         "f2p_ft": [
-          "experiments/fine-tuning f2p rpe on 2dmaterial epoch100/output/2026-03-06/2DMs.h5",
+          "experiments/f2p-ft on 2dmaterial epoch100/output/2026-03-06/2DMs.h5",
           "denoised",
           24
         ],
@@ -738,7 +598,7 @@
           49
         ],
         "resunet": [
-          "experiments/training resunet/output/2026-03-04/2DMs.h5",
+          "experiments/resunet/output/2026-03-04/2DMs.h5",
           "denoised",
           49
         ],
@@ -753,12 +613,12 @@
           49
         ],
         "f2p": [
-          "experiments/training f2p rpe/output/2026-03-05/2DMs.h5",
+          "experiments/f2p/output/2026-03-05/2DMs.h5",
           "denoised",
           49
         ],
         "f2p_ft": [
-          "experiments/fine-tuning f2p rpe on 2dmaterial epoch100/output/2026-03-06/2DMs.h5",
+          "experiments/f2p-ft on 2dmaterial epoch100/output/2026-03-06/2DMs.h5",
           "denoised",
           49
         ],
@@ -815,7 +675,7 @@
           21
         ],
         "resunet": [
-          "experiments/training resunet/output/2026-03-04/Hela.h5",
+          "experiments/resunet/output/2026-03-04/Hela.h5",
           "denoised",
           21
         ],
@@ -830,12 +690,12 @@
           21
         ],
         "f2p": [
-          "experiments/training f2p rpe/output/2026-03-05/Hela.h5",
+          "experiments/f2p/output/2026-03-05/Hela.h5",
           "denoised",
           21
         ],
         "f2p_ft": [
-          "experiments/fine-tuning f2p rpe on hela/output/2026-03-06/Hela.h5",
+          "experiments/f2p-ft on hela/output/2026-03-06/Hela.h5",
           "denoised",
           21
         ],
@@ -892,7 +752,7 @@
           2
         ],
         "resunet": [
-          "experiments/training resunet/output/2026-03-04/SSEs.h5",
+          "experiments/resunet/output/2026-03-04/SSEs.h5",
           "denoised",
           2
         ],
@@ -907,12 +767,12 @@
           2
         ],
         "f2p": [
-          "experiments/training f2p rpe/output/2026-03-05/SSEs.h5",
+          "experiments/f2p/output/2026-03-05/SSEs.h5",
           "denoised",
           2
         ],
         "f2p_ft": [
-          "experiments/fine-tuning f2p rpe on electro/output/2026-03-06/SSEs.h5",
+          "experiments/f2p-ft on electro/output/2026-03-06/SSEs.h5",
           "denoised",
           2
         ],

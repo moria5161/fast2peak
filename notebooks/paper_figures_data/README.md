@@ -1,6 +1,6 @@
 # Paper Figure Spectra
 
-This directory contains all spectral inputs read by `../plot_paper.ipynb`.
+This directory contains the 86 spectral inputs read by `../paper_figures.ipynb`.
 The notebook does not need the project's `datasets/` or `experiments/` directories.
 Numerical metric arrays are embedded in the corresponding plotting cells.
 
@@ -11,14 +11,9 @@ Numerical metric arrays are embedded in the corresponding plotting cells.
 | `experimental_benchmark/` | Selected MoS2, WS2, WSe2, HeLa and SSEs benchmark spectra |
 | `simulated_reference_spectra/` | Shared clean and noisy references for ablation figures |
 | `masking_ablation_spectra/` | F2P trained with and without masking |
-| `mask_vs_full/` | F2P masked-loss and full-spectrum-loss comparison |
-| `transformer_vs_cnn/` | F2P Transformer and CNN predictions |
-| `cross_modality_spectra/` | RAW and F2P examples for IR, NMR and XRD |
 
 Copied TXT spectra retain their original bytes. Their first two columns contain
 the spectral coordinate and intensity; coordinate units follow the figure labels.
-Cross-modality examples are retained as plotted examples, not relabeled as the
-final IR/NMR/XRD quantitative benchmark datasets.
 
 ## Experimental Benchmark Export
 
