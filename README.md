@@ -127,14 +127,6 @@ Please cite our [arXiv preprint](https://arxiv.org/abs/2610.29753):
 }
 ```
 
-## License
-
-Copyright 2026 Fast2Peak contributors. Original Fast2Peak code and documentation are licensed under the [Apache License 2.0](LICENSE).
-
-Third-party code retains its original ownership and terms. The IR utilities in `otherbench/IR/utils/upstream/` are GPL-3.0-or-later; the [GPL text](LICENSES/GPL-3.0.txt) and source notices are retained. See the [SMAE provenance](othermethods/smae/docs/provenance.md) and source attribution in the NMR model files. Baseline files with unresolved provenance or permissions are excluded from the Apache grant pending review; attribution alone does not grant redistribution rights.
-
-Datasets, model weights and third-party fonts are not covered by this code license and require separate terms.
-
 ## Contact
 
 Questions: open an issue or email [moria5161@stu.xmu.edu.cn](mailto:moria5161@stu.xmu.edu.cn).

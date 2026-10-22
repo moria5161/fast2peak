@@ -26,7 +26,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument(
         "--checkpoint",
         type=Path,
-        default=REPO_ROOT / "experiments" / "training f2p rpe" / "checkpoints" / "best_checkpoint.pth",
+        default=REPO_ROOT / "experiments" / "f2p" / "checkpoints" / "best_checkpoint.pth",
     )
     data_dir = IR_ROOT / "datasets" / "paired"
     parser.add_argument("--data-dir", type=Path, default=data_dir)
