@@ -1,16 +1,12 @@
 # Fast2Peak: High-Fidelity Restoration Algorithm by Single-Pixel Masking towards Real-Time Spectral Measurements
 
-<p>
+<p align="center">
   <a href="https://arxiv.org/abs/2610.29753"><img src="docs/badges/paper.svg" alt="Paper: arXiv 2610.29753" height="20"></a>
   <a href="https://huggingface.co/moria5161/fast2peak"><img src="docs/badges/models.svg" alt="Hugging Face: fast2peak" height="20"></a>
   <a href="LICENSE"><img src="docs/badges/license.svg" alt="Code license: Apache 2.0; third-party exceptions below" height="20"></a>
 </p>
 
-<p>
-  <a href="https://huggingface.co/datasets/moria5161/fast2peak">Datasets</a> &nbsp;·&nbsp;
-  <a href="https://huggingface.co/moria5161/fast2peak/tree/main/checkpoints">Weights</a> &nbsp;·&nbsp;
-  <a href="https://huggingface.co/datasets/moria5161/fast2peak/tree/main/real-time%20denoising%20video">Video</a> &nbsp;·&nbsp;
-  <a href="#getting-started">Quickstart</a> &nbsp;·&nbsp;
+<p align="center">
   <a href="#usage">Train &amp; Evaluate</a> &nbsp;·&nbsp;
   <a href="otherbench/RESULTS.md">Benchmarks</a> &nbsp;·&nbsp;
   <a href="notebooks/paper_figures.ipynb">Paper Figures</a> &nbsp;·&nbsp;
