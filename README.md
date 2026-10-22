@@ -1,5 +1,21 @@
 # Fast2Peak: High-Fidelity Restoration Algorithm by Single-Pixel Masking towards Real-Time Spectral Measurements
 
+<p align="center">
+  <a href="https://arxiv.org/abs/2610.29753"><img src="docs/badges/paper.svg" alt="Paper: arXiv 2610.29753" height="26"></a>
+  <a href="https://huggingface.co/datasets/moria5161/fast2peak"><img src="docs/badges/datasets.svg" alt="Hugging Face datasets" height="26"></a>
+  <a href="https://huggingface.co/moria5161/fast2peak"><img src="docs/badges/models.svg" alt="Hugging Face models and configurations" height="26"></a>
+  <a href="https://huggingface.co/datasets/moria5161/fast2peak/tree/main/real-time%20denoising%20video"><img src="docs/badges/video.svg" alt="Real-time denoising video" height="26"></a>
+  <a href="LICENSE"><img src="docs/badges/license.svg" alt="Code license: Apache 2.0; third-party exceptions below" height="26"></a>
+</p>
+
+<p align="center">
+  <a href="#getting-started">Quickstart</a> &nbsp;·&nbsp;
+  <a href="#usage">Train &amp; Evaluate</a> &nbsp;·&nbsp;
+  <a href="otherbench/RESULTS.md">Benchmarks</a> &nbsp;·&nbsp;
+  <a href="notebooks/paper_figures.ipynb">Paper Figures</a> &nbsp;·&nbsp;
+  <a href="#citation">Cite</a>
+</p>
+
 ## Abstract
 
 Improving the temporal and spatial resolution of spectroscopy inevitably reduces the photons available to each measurement, pushing rapid measurements into photon-starved conditions where weak spectral features are obscured by stochastic background noise. Here, we present Fast2Peak (F2P), a self-supervised Transformer framework that transforms spectral restoration task into a context-prediction problem. Given that physically constrained spectral signals exhibit strong local continuity, whereas the stochastic noise fluctuate randomly and does not possess the continuity across neighboring spectral pixels, single-pixel masking enables F2P to restore the predictable signal structure while suppressing unpredictable fluctuations even without clean reference spectra. Unlike conventional offline spectral restoration, F2P achieves high-fidelity restoration within milliseconds, enabling real-time “acquire-and-process” operation. We demonstrate this capability in time-resolved electrochemical surface-enhanced Raman spectroscopy and hyperspectral Raman imaging, where spectral restoration is performed during data acquisition. In addition, F2P has demonstrated its robust generalization across different instruments and spectral modalities, including Raman, nuclear magnetic resonance, X-ray diffraction and Fourier-transform infrared spectroscopy.
@@ -11,9 +27,15 @@ Improving the temporal and spatial resolution of spectroscopy inevitably reduces
 
 ## Datasets and Checkpoints
 
-Datasets, model configurations and pretrained weights will be released through [moria5161 on Hugging Face](https://huggingface.co/moria5161).
+The following resources are publicly available on Hugging Face:
 
-**Release status: pending upload.** The resources are not yet available. Direct dataset/checkpoint links and placement instructions will be added when the release is ready. Keep each checkpoint together with its accompanying `config.yaml`, which the inference entry point uses to restore the model configuration.
+| Resource | Download | Local placement |
+|---|---|---|
+| Pretraining and Raman benchmark data | [Datasets](https://huggingface.co/datasets/moria5161/fast2peak/tree/main/datasets) | Preserve `datasets/train/` and `datasets/test/`. |
+| F2P, ResUNet and SMAE weights and configurations | [Checkpoints](https://huggingface.co/moria5161/fast2peak/tree/main/checkpoints) | For F2P, place the checkpoint and config in `experiments/f2p/checkpoints/`. |
+| Real-time denoising demonstration | [Video](https://huggingface.co/datasets/moria5161/fast2peak/tree/main/real-time%20denoising%20video) | View online; not required for training or evaluation. |
+
+Keep each checkpoint together with its accompanying `config.yaml`, which the inference entry point uses to restore the model configuration. IR, XRD and NMR-specific data and checkpoints are not included in the current Hugging Face upload.
 
 ## Getting Started
 
@@ -30,7 +52,7 @@ For CPU-only installation, replace the PyTorch index URL with `https://download.
 
 ## Usage
 
-Run the following commands from the repository root after preparing the data and, for evaluation, the checkpoint. Downloads are still pending as noted above. On a cluster, run training and inference on an allocated compute node, not the login node.
+Run the following commands from the repository root after preparing the data and, for evaluation, the checkpoint linked above. On a cluster, run training and inference on an allocated compute node, not the login node.
 
 ### Training
 
@@ -97,7 +119,7 @@ tensorboard --logdir logs/f2p_train
 
 ## Benchmark Reproduction
 
-Data and weights from the pending release are required before running the benchmarks. Code and configurations are organized by modality:
+Each benchmark requires its corresponding data and model assets. Code and configurations are organized by modality:
 
 - [IR](otherbench/IR/)
 - [XRD](otherbench/XRD/)
@@ -109,7 +131,19 @@ Local scheduler settings are not required by the Python entry points. The option
 
 ## Citation
 
-The manuscript citation will be added when available.
+If you use Fast2Peak, please cite our [arXiv preprint](https://arxiv.org/abs/2610.29753):
+
+```bibtex
+@misc{zhang2026fast2peak,
+  title = {Fast2Peak: High-Fidelity Restoration Algorithm by Single-Pixel Masking towards Real-Time Spectral Measurements},
+  author = {Nan-Nan Zhang and Si-Heng Luo and Xin-Di Pei and Wen-Xuan Li and Jun Wang and Yi-Fan Bao and Hao Ma and Guo-Kun Liu and Bin Ren},
+  year = {2026},
+  eprint = {2610.29753},
+  archivePrefix = {arXiv},
+  primaryClass = {physics.optics},
+  url = {https://arxiv.org/abs/2610.29753}
+}
+```
 
 ## License
 

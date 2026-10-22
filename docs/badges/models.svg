@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="167" height="26" viewBox="0 0 167 26" role="img" aria-labelledby="title">
+  <title id="title">Hugging Face models</title>
+  <defs><clipPath id="shape"><rect width="167" height="26" rx="5"/></clipPath></defs>
+  <g clip-path="url(#shape)">
+    <rect width="167" height="26" fill="#343A40"/>
+    <rect x="101" width="66" height="26" fill="#E68052"/>
+    <path d="M0 1h167" stroke="#FFFFFF" stroke-opacity=".12"/>
+  </g>
+  <g font-family="Verdana,DejaVu Sans,sans-serif" font-size="11" text-anchor="middle">
+    <text x="50.5" y="17" fill="#FFFFFF">Hugging Face</text>
+    <text x="134" y="17" fill="#202124" font-weight="600">Models</text>
+  </g>
+</svg>

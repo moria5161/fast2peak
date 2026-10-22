@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="135" height="26" viewBox="0 0 135 26" role="img" aria-labelledby="title">
+  <title id="title">Real-time denoising demo</title>
+  <defs><clipPath id="shape"><rect width="135" height="26" rx="5"/></clipPath></defs>
+  <g clip-path="url(#shape)">
+    <rect width="135" height="26" fill="#343A40"/>
+    <rect x="53" width="82" height="26" fill="#237D72"/>
+    <path d="M0 1h135" stroke="#FFFFFF" stroke-opacity=".12"/>
+  </g>
+  <g font-family="Verdana,DejaVu Sans,sans-serif" font-size="11" text-anchor="middle">
+    <text x="26.5" y="17" fill="#FFFFFF">Demo</text>
+    <text x="94" y="17" fill="#FFFFFF" font-weight="600">Real-time</text>
+  </g>
+</svg>
