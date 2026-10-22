@@ -6,13 +6,6 @@
   <a href="LICENSE"><img src="docs/badges/license.svg" alt="Code license: Apache 2.0; third-party exceptions below" height="20"></a>
 </p>
 
-<p>
-  <a href="#usage">Train &amp; Evaluate</a> &nbsp;·&nbsp;
-  <a href="otherbench/RESULTS.md">Benchmarks</a> &nbsp;·&nbsp;
-  <a href="notebooks/paper_figures.ipynb">Paper Figures</a> &nbsp;·&nbsp;
-  <a href="#citation">Cite</a>
-</p>
-
 ## Abstract
 
 Improving the temporal and spatial resolution of spectroscopy inevitably reduces the photons available to each measurement, pushing rapid measurements into photon-starved conditions where weak spectral features are obscured by stochastic background noise. Here, we present Fast2Peak (F2P), a self-supervised Transformer framework that transforms spectral restoration task into a context-prediction problem. Given that physically constrained spectral signals exhibit strong local continuity, whereas the stochastic noise fluctuate randomly and does not possess the continuity across neighboring spectral pixels, single-pixel masking enables F2P to restore the predictable signal structure while suppressing unpredictable fluctuations even without clean reference spectra. Unlike conventional offline spectral restoration, F2P achieves high-fidelity restoration within milliseconds, enabling real-time “acquire-and-process” operation. We demonstrate this capability in time-resolved electrochemical surface-enhanced Raman spectroscopy and hyperspectral Raman imaging, where spectral restoration is performed during data acquisition. In addition, F2P has demonstrated its robust generalization across different instruments and spectral modalities, including Raman, nuclear magnetic resonance, X-ray diffraction and Fourier-transform infrared spectroscopy.
