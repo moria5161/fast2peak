@@ -1,12 +1,12 @@
 # Fast2Peak: High-Fidelity Restoration Algorithm by Single-Pixel Masking towards Real-Time Spectral Measurements
 
-<p align="center">
+<p>
   <a href="https://arxiv.org/abs/2610.29753"><img src="docs/badges/paper.svg" alt="Paper: arXiv 2610.29753" height="20"></a>
   <a href="https://huggingface.co/moria5161/fast2peak"><img src="docs/badges/models.svg" alt="Hugging Face: fast2peak" height="20"></a>
   <a href="LICENSE"><img src="docs/badges/license.svg" alt="Code license: Apache 2.0; third-party exceptions below" height="20"></a>
 </p>
 
-<p align="center">
+<p>
   <a href="#usage">Train &amp; Evaluate</a> &nbsp;·&nbsp;
   <a href="otherbench/RESULTS.md">Benchmarks</a> &nbsp;·&nbsp;
   <a href="notebooks/paper_figures.ipynb">Paper Figures</a> &nbsp;·&nbsp;
@@ -36,7 +36,7 @@ Keep each checkpoint together with its accompanying `config.yaml`, which the inf
 
 ## Getting Started
 
-Run commands from the repository root. The current development environment uses Python 3.12, PyTorch 2.7.0 and torchvision 0.22.0 with CUDA 11.8. Direct dependency versions in `requirements.txt` match this environment.
+Run from the repository root. Tested with Python 3.12 and PyTorch 2.7.0 (CUDA 11.8).
 
 ```bash
 conda create -n fast2peak python=3.12
@@ -45,17 +45,17 @@ python -m pip install torch==2.7.0 torchvision==0.22.0 --index-url https://downl
 python -m pip install -r requirements.txt
 ```
 
-For CPU-only installation, replace the PyTorch index URL with `https://download.pytorch.org/whl/cpu`. For other platforms, consult the [official PyTorch installation instructions](https://pytorch.org/get-started/previous-versions/#v270). CPU execution is not intended for reproducing GPU runtime measurements. No environment installation or training is performed automatically by this repository.
+For CPU-only use, change the PyTorch index URL to `https://download.pytorch.org/whl/cpu`. See [PyTorch installation options](https://pytorch.org/get-started/previous-versions/#v270) for other platforms. GPU runtime results require a GPU.
 
 ## Usage
 
-Run the following commands from the repository root after preparing the data and, for evaluation, the checkpoint linked above. On a cluster, run training and inference on an allocated compute node, not the login node.
+Prepare the resources above. On clusters, run training and inference on a compute node, not the login node.
 
 ### Training
 
-Prepare `datasets/train/train.h5` and `datasets/train/val.h5`. Each file must contain a `noisy` array of shape `[N, L]`; the main F2P configuration uses `L = 1600`. Self-supervised training and validation use noisy observations, not clean `gt` targets.
+Use `datasets/train/train.h5` and `datasets/train/val.h5`, each containing a `noisy` array of shape `[N, 1600]`. Training and validation are self-supervised; no `gt` is used.
 
-**Current implementation note:** the `F2P` branch in `utils/spec_loader.py` currently selects `BlockMaskDataset` with a default `--block_size 8`; its `MaskDataset` calls are commented out. The commands below document the current training interface, not a verified reproduction of the paper's single-pixel masking protocol. Restore the single-pixel dataset branch before reproducing that protocol; `--mask_ratio 0.05` alone does not change the masking strategy.
+**Masking note:** the `F2P` branch in `utils/spec_loader.py` currently uses `BlockMaskDataset` (`--block_size 8`). Restore its `MaskDataset` calls to reproduce the paper's single-pixel masking protocol; `--mask_ratio` alone does not switch strategies.
 
 ```bash
 python main.py --train \
@@ -70,13 +70,13 @@ python main.py --train \
     --weight_decay 1e-3 --seed 615
 ```
 
-For single-node multi-GPU training, replace `python main.py --train` with `torchrun --standalone --nproc_per_node=4 main.py --train --ddp`, keeping the other arguments. Set the process count to the allocated GPU count. `--batch_size` is per process, so changing the GPU count changes the effective global batch size.
+For single-node multi-GPU training, replace `python main.py --train` with `torchrun --standalone --nproc_per_node=4 main.py --train --ddp`. Match the process count to your GPUs; `--batch_size` is per GPU.
 
-The best checkpoint is selected by validation masked MSE and saved as `experiments/f2p_train/checkpoints/best_checkpoint.pth`, alongside `config.yaml`. TensorBoard logs are written to `logs/f2p_train`.
+The lowest validation masked MSE selects `experiments/f2p_train/checkpoints/best_checkpoint.pth`, saved alongside `config.yaml`. Logs: `logs/f2p_train`.
 
 ### Evaluation
 
-For quantitative evaluation, the test HDF5 file must contain matching `noisy` and `gt` arrays of shape `[N, L]`. Without `gt`, the evaluator saves denoised spectra but skips reference-based metrics.
+Test HDF5 files contain matching `noisy` and `gt` arrays of shape `[N, L]`. Without `gt`, only denoised spectra are saved.
 
 ```bash
 python main.py --test \
@@ -85,28 +85,28 @@ python main.py --test \
     --test_batch_size 1024
 ```
 
-Replace the checkpoint path with the released pretrained checkpoint to evaluate without training. Its adjacent `config.yaml` is required: the evaluator restores the architecture from that file, including the legacy `Fast2PeakRPE` to `F2P` name mapping. Use a single process for evaluation; do not add `--ddp`.
+To skip training, use the released pretrained checkpoint with its adjacent `config.yaml`. Evaluate in a single process, without `--ddp`.
 
-For the example above, outputs are saved under `experiments/f2p_train/output/YYYY-MM-DD/`:
+Outputs in `experiments/f2p_train/output/YYYY-MM-DD/`:
 
-- `Simu.h5`: predictions under the `denoised` key.
-- `Simu_eval.log`: mean SNR (dB), RMSE and SSS when `gt` is available.
+- `Simu.h5`: `denoised` predictions.
+- `Simu_eval.log`: mean SNR (dB), RMSE and SSS (requires `gt`).
 - `Simu_metrics_details.csv`: per-spectrum metrics.
 
-Self-supervised F2P inference includes the existing noisy-input-based amplitude correction. IR, XRD and NMR use their own benchmark evaluators and metric definitions linked below.
+F2P inference includes noisy-input-based amplitude correction. IR, XRD and NMR use separate evaluators below.
 
 ### Key Arguments
 
 | Argument | Description |
 |---|---|
-| `--train` / `--test` | Train a model or run inference/evaluation. |
-| `--exp_name` | Training experiment name used for checkpoint and log directories. |
+| `--train` / `--test` | Train or evaluate. |
+| `--exp_name` | Experiment name for checkpoints and logs. |
 | `--train_data_dir` | Directory containing `train.h5` and `val.h5`. |
-| `--mask_ratio` | Fraction of spectral points selected for masking; explicitly set to `0.05` above rather than the CLI default `0.25`. |
-| `--gamma` | Neighborhood parameter used to replace selected points. |
-| `--test_model_path` | Checkpoint path; keep its `config.yaml` in the same directory. |
-| `--test_datapath` | Test file, or a directory of test files. |
-| `--test_batch_size` | Inference batch size; reduce it if GPU memory is limited. |
+| `--mask_ratio` | Masked fraction: `0.05` above; CLI default `0.25`. |
+| `--gamma` | Replacement neighborhood parameter. |
+| `--test_model_path` | Checkpoint with adjacent `config.yaml`. |
+| `--test_datapath` | Test file or directory. |
+| `--test_batch_size` | Inference batch size; adjust for GPU memory. |
 
 ### Training Logs
 
@@ -116,19 +116,11 @@ tensorboard --logdir logs/f2p_train
 
 ## Benchmark Reproduction
 
-Each benchmark requires its corresponding data and model assets. Code and configurations are organized by modality:
-
-- [IR](otherbench/IR/)
-- [XRD](otherbench/XRD/)
-- [NMR](otherbench/NMR/)
-
-See [benchmark results](otherbench/RESULTS.md) for the finalized tables.
-
-Local scheduler settings are not required by the Python entry points. The optional Peak2Peak Slurm helper should be submitted from the repository root: `sbatch othermethods/peak2peak/p2p.sh`. Select a node or partition through `sbatch` options if required by your cluster.
+[IR](otherbench/IR/), [XRD](otherbench/XRD/) and [NMR](otherbench/NMR/) provide modality-specific code and configurations; each requires its own data and model assets. See [final results](otherbench/RESULTS.md).
 
 ## Citation
 
-If you use Fast2Peak, please cite our [arXiv preprint](https://arxiv.org/abs/2610.29753):
+Please cite our [arXiv preprint](https://arxiv.org/abs/2610.29753):
 
 ```bibtex
 @misc{zhang2026fast2peak,
@@ -151,5 +143,5 @@ Third-party code retains its original ownership and terms. The IR utilities in `
 Datasets, model weights and third-party fonts are not covered by this code license and require separate terms.
 
 ## Contact
-Welcome to contact us or raise issues if you have any questions. 
-Email: moria5161@stu.xmu.edu.cn
+
+Questions: open an issue or email [moria5161@stu.xmu.edu.cn](mailto:moria5161@stu.xmu.edu.cn).
